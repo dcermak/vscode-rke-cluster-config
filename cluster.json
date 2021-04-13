@@ -1,0 +1,4253 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref": "#/definitions/RancherKubernetesEngineConfig",
+  "definitions": {
+    "AESConfiguration": {
+      "required": [
+        "Keys"
+      ],
+      "properties": {
+        "Keys": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/Key"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AWSCloudProvider": {
+      "required": [
+        "global"
+      ],
+      "properties": {
+        "global": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/GlobalAwsOpts"
+        },
+        "serviceOverride": {
+          "patternProperties": {
+            ".*": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "$ref": "#/definitions/ServiceOverride"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AWSElasticBlockStoreVolumeSource": {
+      "required": [
+        "volumeID"
+      ],
+      "properties": {
+        "volumeID": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "partition": {
+          "type": "integer"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AciNetworkProvider": {
+      "properties": {
+        "systemId": {
+          "type": "string"
+        },
+        "apicHosts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "token": {
+          "type": "string"
+        },
+        "apicUserName": {
+          "type": "string"
+        },
+        "apicUserKey": {
+          "type": "string"
+        },
+        "apicUserCrt": {
+          "type": "string"
+        },
+        "apicRefreshTime": {
+          "type": "string"
+        },
+        "vmmDomain": {
+          "type": "string"
+        },
+        "vmmController": {
+          "type": "string"
+        },
+        "encapType": {
+          "type": "string"
+        },
+        "nodeSubnet": {
+          "type": "string"
+        },
+        "mcastRangeStart": {
+          "type": "string"
+        },
+        "mcastRangeEnd": {
+          "type": "string"
+        },
+        "aep": {
+          "type": "string"
+        },
+        "vrfName": {
+          "type": "string"
+        },
+        "vrfTenant": {
+          "type": "string"
+        },
+        "l3out": {
+          "type": "string"
+        },
+        "l3outExternalNetworks": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "externDynamic": {
+          "type": "string"
+        },
+        "externStatic": {
+          "type": "string"
+        },
+        "nodeSvcSubnet": {
+          "type": "string"
+        },
+        "kubeApiVlan": {
+          "type": "string"
+        },
+        "serviceVlan": {
+          "type": "string"
+        },
+        "infraVlan": {
+          "type": "string"
+        },
+        "tenant": {
+          "type": "string"
+        },
+        "ovsMemoryLimit": {
+          "type": "string"
+        },
+        "imagePullPolicy": {
+          "type": "string"
+        },
+        "imagePullSecret": {
+          "type": "string"
+        },
+        "serviceMonitorInterval": {
+          "type": "string"
+        },
+        "pbrTrackingNonSnat": {
+          "type": "string"
+        },
+        "installIstio": {
+          "type": "string"
+        },
+        "istioProfile": {
+          "type": "string"
+        },
+        "dropLogEnable": {
+          "type": "string"
+        },
+        "controllerLogLevel": {
+          "type": "string"
+        },
+        "hostAgentLogLevel": {
+          "type": "string"
+        },
+        "opflexLogLevel": {
+          "type": "string"
+        },
+        "useAciCniPriorityClass": {
+          "type": "string"
+        },
+        "noPriorityClass": {
+          "type": "string"
+        },
+        "maxNodesSvcGraph": {
+          "type": "string"
+        },
+        "snatContractScope": {
+          "type": "string"
+        },
+        "podSubnetChunkSize": {
+          "type": "string"
+        },
+        "enableEndpointSlice": {
+          "type": "string"
+        },
+        "snatNamespace": {
+          "type": "string"
+        },
+        "epRegistry": {
+          "type": "string"
+        },
+        "opflexMode": {
+          "type": "string"
+        },
+        "snatPortRangeStart": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "snatPortRangeEnd": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "snatPortsPerNode": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "opflexClientSsl": {
+          "type": "string"
+        },
+        "usePrivilegedContainer": {
+          "type": "string"
+        },
+        "useHostNetnsVolume": {
+          "type": "string"
+        },
+        "useOpflexServerVolume": {
+          "type": "string"
+        },
+        "subnetDomainName": {
+          "type": "string"
+        },
+        "kafkaBrokers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kafkaClientCrt": {
+          "type": "string"
+        },
+        "kafkaClientKey": {
+          "type": "string"
+        },
+        "capic": {
+          "type": "string"
+        },
+        "useAciAnywhereCrd": {
+          "type": "string"
+        },
+        "overlayVrfName": {
+          "type": "string"
+        },
+        "gbpPodSubnet": {
+          "type": "string"
+        },
+        "runGbpContainer": {
+          "type": "string"
+        },
+        "runOpflexServerContainer": {
+          "type": "string"
+        },
+        "opflexServerPort": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AdmissionConfiguration": {
+      "required": [
+        "TypeMeta",
+        "plugins"
+      ],
+      "properties": {
+        "TypeMeta": {
+          "$ref": "#/definitions/TypeMeta"
+        },
+        "plugins": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/AdmissionPluginConfiguration"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AdmissionPluginConfiguration": {
+      "required": [
+        "name",
+        "path",
+        "configuration"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "configuration": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/Unknown"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AuditLog": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "configuration": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AuditLogConfig"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AuditLogConfig": {
+      "properties": {
+        "maxAge": {
+          "type": "integer"
+        },
+        "maxBackup": {
+          "type": "integer"
+        },
+        "maxSize": {
+          "type": "integer"
+        },
+        "path": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "policy": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/Policy"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AuthWebhookConfig": {
+      "properties": {
+        "configFile": {
+          "type": "string"
+        },
+        "cacheTimeout": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AuthnConfig": {
+      "properties": {
+        "strategy": {
+          "type": "string"
+        },
+        "sans": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "webhook": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AuthWebhookConfig"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AuthzConfig": {
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "options": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AzureCloudProvider": {
+      "required": [
+        "cloud",
+        "tenantId",
+        "subscriptionId",
+        "resourceGroup",
+        "location",
+        "vnetName",
+        "vnetResourceGroup",
+        "subnetName",
+        "securityGroupName",
+        "routeTableName",
+        "primaryAvailabilitySetName",
+        "vmType",
+        "primaryScaleSetName",
+        "aadClientId",
+        "aadClientSecret",
+        "aadClientCertPath",
+        "aadClientCertPassword",
+        "cloudProviderBackoff",
+        "cloudProviderBackoffRetries",
+        "cloudProviderBackoffExponent",
+        "cloudProviderBackoffDuration",
+        "cloudProviderBackoffJitter",
+        "cloudProviderRateLimit",
+        "cloudProviderRateLimitQPS",
+        "cloudProviderRateLimitBucket",
+        "useInstanceMetadata",
+        "useManagedIdentityExtension",
+        "maximumLoadBalancerRuleCount"
+      ],
+      "properties": {
+        "cloud": {
+          "type": "string"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subscriptionId": {
+          "type": "string"
+        },
+        "resourceGroup": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "vnetName": {
+          "type": "string"
+        },
+        "vnetResourceGroup": {
+          "type": "string"
+        },
+        "subnetName": {
+          "type": "string"
+        },
+        "securityGroupName": {
+          "type": "string"
+        },
+        "routeTableName": {
+          "type": "string"
+        },
+        "primaryAvailabilitySetName": {
+          "type": "string"
+        },
+        "vmType": {
+          "type": "string"
+        },
+        "primaryScaleSetName": {
+          "type": "string"
+        },
+        "aadClientId": {
+          "type": "string"
+        },
+        "aadClientSecret": {
+          "type": "string"
+        },
+        "aadClientCertPath": {
+          "type": "string"
+        },
+        "aadClientCertPassword": {
+          "type": "string"
+        },
+        "cloudProviderBackoff": {
+          "type": "boolean"
+        },
+        "cloudProviderBackoffRetries": {
+          "type": "integer"
+        },
+        "cloudProviderBackoffExponent": {
+          "type": "integer"
+        },
+        "cloudProviderBackoffDuration": {
+          "type": "integer"
+        },
+        "cloudProviderBackoffJitter": {
+          "type": "integer"
+        },
+        "cloudProviderRateLimit": {
+          "type": "boolean"
+        },
+        "cloudProviderRateLimitQPS": {
+          "type": "integer"
+        },
+        "cloudProviderRateLimitBucket": {
+          "type": "integer"
+        },
+        "useInstanceMetadata": {
+          "type": "boolean"
+        },
+        "useManagedIdentityExtension": {
+          "type": "boolean"
+        },
+        "userAssignedIdentityID": {
+          "type": "string"
+        },
+        "maximumLoadBalancerRuleCount": {
+          "type": "integer"
+        },
+        "loadBalancerSku": {
+          "type": "string"
+        },
+        "excludeMasterFromStandardLB": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AzureDiskVolumeSource": {
+      "required": [
+        "diskName",
+        "diskURI"
+      ],
+      "properties": {
+        "diskName": {
+          "type": "string"
+        },
+        "diskURI": {
+          "type": "string"
+        },
+        "cachingMode": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AzureFileVolumeSource": {
+      "required": [
+        "secretName",
+        "shareName"
+      ],
+      "properties": {
+        "secretName": {
+          "type": "string"
+        },
+        "shareName": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "BackupConfig": {
+      "required": [
+        "s3BackupConfig"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "intervalHours": {
+          "type": "integer"
+        },
+        "retention": {
+          "type": "integer"
+        },
+        "s3BackupConfig": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/S3BackupConfig"
+        },
+        "safeTimestamp": {
+          "type": "boolean"
+        },
+        "timeout": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "BastionHost": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "port": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "user": {
+          "type": "string"
+        },
+        "sshAgentAuth": {
+          "type": "boolean"
+        },
+        "sshKey": {
+          "type": "string"
+        },
+        "sshKeyPath": {
+          "type": "string"
+        },
+        "sshCert": {
+          "type": "string"
+        },
+        "sshCertPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "BlockStorageOpenstackOpts": {
+      "required": [
+        "bs-version",
+        "trust-device-path",
+        "ignore-volume-az"
+      ],
+      "properties": {
+        "bs-version": {
+          "type": "string"
+        },
+        "trust-device-path": {
+          "type": "boolean"
+        },
+        "ignore-volume-az": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "CSIVolumeSource": {
+      "required": [
+        "driver"
+      ],
+      "properties": {
+        "driver": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "volumeAttributes": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "nodePublishSecretRef": {
+          "$ref": "#/definitions/LocalObjectReference"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "CalicoNetworkProvider": {
+      "required": [
+        "cloudProvider"
+      ],
+      "properties": {
+        "cloudProvider": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "CanalNetworkProvider": {
+      "required": [
+        "iface"
+      ],
+      "properties": {
+        "iface": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "CephFSVolumeSource": {
+      "required": [
+        "monitors"
+      ],
+      "properties": {
+        "monitors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "path": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "secretFile": {
+          "type": "string"
+        },
+        "secretRef": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "CinderVolumeSource": {
+      "required": [
+        "volumeID"
+      ],
+      "properties": {
+        "volumeID": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "secretRef": {
+          "$ref": "#/definitions/LocalObjectReference"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "CloudProvider": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "awsCloudProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AWSCloudProvider"
+        },
+        "azureCloudProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AzureCloudProvider"
+        },
+        "openstackCloudProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/OpenstackCloudProvider"
+        },
+        "vsphereCloudProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/VsphereCloudProvider"
+        },
+        "customCloudProvider": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ConfigMapKeySelector": {
+      "required": [
+        "LocalObjectReference",
+        "key"
+      ],
+      "properties": {
+        "LocalObjectReference": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "key": {
+          "type": "string"
+        },
+        "optional": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ConfigMapProjection": {
+      "required": [
+        "LocalObjectReference"
+      ],
+      "properties": {
+        "LocalObjectReference": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/KeyToPath"
+          },
+          "type": "array"
+        },
+        "optional": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ConfigMapVolumeSource": {
+      "required": [
+        "LocalObjectReference"
+      ],
+      "properties": {
+        "LocalObjectReference": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/KeyToPath"
+          },
+          "type": "array"
+        },
+        "defaultMode": {
+          "type": "integer"
+        },
+        "optional": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Configuration": {
+      "required": [
+        "TypeMeta",
+        "limits"
+      ],
+      "properties": {
+        "TypeMeta": {
+          "$ref": "#/definitions/TypeMeta"
+        },
+        "limits": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/Limit"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DNSConfig": {
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "options": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "upstreamnameservers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reversecidrs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "stubdomains": {
+          "patternProperties": {
+            ".*": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "nodeSelector": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "nodelocal": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/Nodelocal"
+        },
+        "updateStrategy": {
+          "$ref": "#/definitions/DeploymentStrategy"
+        },
+        "linearAutoscalerParams": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/LinearAutoscalerParams"
+        },
+        "tolerations": {
+          "items": {
+            "$ref": "#/definitions/Toleration"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DaemonSetUpdateStrategy": {
+      "properties": {
+        "strategy": {
+          "type": "string"
+        },
+        "rollingUpdate": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/RollingUpdateDaemonSet"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DeploymentStrategy": {
+      "properties": {
+        "strategy": {
+          "type": "string"
+        },
+        "rollingUpdate": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/RollingUpdateDeployment"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DiskVsphereOpts": {
+      "properties": {
+        "scsicontrollertype": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DownwardAPIProjection": {
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/definitions/DownwardAPIVolumeFile"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DownwardAPIVolumeFile": {
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "fieldRef": {
+          "$ref": "#/definitions/ObjectFieldSelector"
+        },
+        "resourceFieldRef": {
+          "$ref": "#/definitions/ResourceFieldSelector"
+        },
+        "mode": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DownwardAPIVolumeSource": {
+      "properties": {
+        "items": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/DownwardAPIVolumeFile"
+          },
+          "type": "array"
+        },
+        "defaultMode": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Duration": {
+      "properties": {},
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ETCDService": {
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "extraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "extraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "winExtraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "externalUrls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "caCert": {
+          "type": "string"
+        },
+        "cert": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        },
+        "gid": {
+          "type": "integer"
+        },
+        "snapshot": {
+          "type": "boolean"
+        },
+        "retention": {
+          "type": "string"
+        },
+        "creation": {
+          "type": "string"
+        },
+        "backupConfig": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/BackupConfig"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "EmptyDirVolumeSource": {
+      "properties": {
+        "medium": {
+          "type": "string"
+        },
+        "sizeLimit": {
+          "$ref": "#/definitions/Quantity"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "EncryptionConfiguration": {
+      "required": [
+        "Resources"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "apiVersion": {
+          "type": "string"
+        },
+        "Resources": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/ResourceConfiguration"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "EnvVarSource": {
+      "properties": {
+        "fieldRef": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ObjectFieldSelector"
+        },
+        "resourceFieldRef": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ResourceFieldSelector"
+        },
+        "configMapKeyRef": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ConfigMapKeySelector"
+        },
+        "secretKeyRef": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/SecretKeySelector"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "EphemeralVolumeSource": {
+      "properties": {
+        "volumeClaimTemplate": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/PersistentVolumeClaimTemplate"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "EventRateLimit": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "configuration": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/Configuration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ExtraEnv": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/EnvVarSource"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ExtraVolume": {
+      "required": [
+        "name",
+        "VolumeSource"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "VolumeSource": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/VolumeSource"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ExtraVolumeMount": {
+      "required": [
+        "name",
+        "mountPath"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "mountPath": {
+          "type": "string"
+        },
+        "subPath": {
+          "type": "string"
+        },
+        "mountPropagation": {
+          "type": "string"
+        },
+        "subPathExpr": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "FCVolumeSource": {
+      "properties": {
+        "targetWWNs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lun": {
+          "type": "integer"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "wwids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "FieldsV1": {
+      "properties": {},
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "FlannelNetworkProvider": {
+      "required": [
+        "iface"
+      ],
+      "properties": {
+        "iface": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "FlexVolumeSource": {
+      "required": [
+        "driver"
+      ],
+      "properties": {
+        "driver": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "secretRef": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "options": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "FlockerVolumeSource": {
+      "properties": {
+        "datasetName": {
+          "type": "string"
+        },
+        "datasetUUID": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "GCEPersistentDiskVolumeSource": {
+      "required": [
+        "pdName"
+      ],
+      "properties": {
+        "pdName": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "partition": {
+          "type": "integer"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "GitRepoVolumeSource": {
+      "required": [
+        "repository"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "directory": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "GlobalAwsOpts": {
+      "required": [
+        "zone",
+        "vpc",
+        "subnet-id",
+        "routetable-id",
+        "role-arn",
+        "kubernetes-cluster-tag",
+        "kubernetes-cluster-id",
+        "disable-security-group-ingress",
+        "elb-security-group",
+        "disable-strict-zone-check"
+      ],
+      "properties": {
+        "zone": {
+          "type": "string"
+        },
+        "vpc": {
+          "type": "string"
+        },
+        "subnet-id": {
+          "type": "string"
+        },
+        "routetable-id": {
+          "type": "string"
+        },
+        "role-arn": {
+          "type": "string"
+        },
+        "kubernetes-cluster-tag": {
+          "type": "string"
+        },
+        "kubernetes-cluster-id": {
+          "type": "string"
+        },
+        "disable-security-group-ingress": {
+          "type": "boolean"
+        },
+        "elb-security-group": {
+          "type": "string"
+        },
+        "disable-strict-zone-check": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "GlobalOpenstackOpts": {
+      "required": [
+        "auth-url",
+        "username",
+        "user-id",
+        "password",
+        "tenant-id",
+        "tenant-name",
+        "trust-id",
+        "domain-id",
+        "domain-name",
+        "region",
+        "ca-file"
+      ],
+      "properties": {
+        "auth-url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "user-id": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "tenant-id": {
+          "type": "string"
+        },
+        "tenant-name": {
+          "type": "string"
+        },
+        "trust-id": {
+          "type": "string"
+        },
+        "domain-id": {
+          "type": "string"
+        },
+        "domain-name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "ca-file": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "GlobalVsphereOpts": {
+      "properties": {
+        "user": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "server": {
+          "type": "string"
+        },
+        "port": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "insecure-flag": {
+          "type": "boolean"
+        },
+        "datacenter": {
+          "type": "string"
+        },
+        "datacenters": {
+          "type": "string"
+        },
+        "datastore": {
+          "type": "string"
+        },
+        "working-dir": {
+          "type": "string"
+        },
+        "soap-roundtrip-count": {
+          "type": "integer"
+        },
+        "vm-uuid": {
+          "type": "string"
+        },
+        "vm-name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "GlusterfsVolumeSource": {
+      "required": [
+        "endpoints",
+        "path"
+      ],
+      "properties": {
+        "endpoints": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "GroupResources": {
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "resources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resourceNames": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "HostPathVolumeSource": {
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ISCSIVolumeSource": {
+      "required": [
+        "targetPortal",
+        "iqn",
+        "lun"
+      ],
+      "properties": {
+        "targetPortal": {
+          "type": "string"
+        },
+        "iqn": {
+          "type": "string"
+        },
+        "lun": {
+          "type": "integer"
+        },
+        "iscsiInterface": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "portals": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "chapAuthDiscovery": {
+          "type": "boolean"
+        },
+        "chapAuthSession": {
+          "type": "boolean"
+        },
+        "secretRef": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "initiatorName": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "IdentityConfiguration": {
+      "properties": {},
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "IngressConfig": {
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "options": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "nodeSelector": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "extraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "dnsPolicy": {
+          "type": "string"
+        },
+        "extraEnvs": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/ExtraEnv"
+          },
+          "type": "array"
+        },
+        "extraVolumes": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/ExtraVolume"
+          },
+          "type": "array"
+        },
+        "extraVolumeMounts": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/ExtraVolumeMount"
+          },
+          "type": "array"
+        },
+        "updateStrategy": {
+          "$ref": "#/definitions/DaemonSetUpdateStrategy"
+        },
+        "httpPort": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "httpsPort": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "networkMode": {
+          "type": "string"
+        },
+        "tolerations": {
+          "items": {
+            "$ref": "#/definitions/Toleration"
+          },
+          "type": "array"
+        },
+        "defaultBackend": {
+          "type": "boolean"
+        },
+        "defaultHttpBackendPriorityClassName": {
+          "type": "string"
+        },
+        "nginxIngressControllerPriorityClassName": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "IntOrString": {
+      "required": [
+        "Type",
+        "IntVal",
+        "StrVal"
+      ],
+      "properties": {
+        "Type": {
+          "type": "integer"
+        },
+        "IntVal": {
+          "type": "integer"
+        },
+        "StrVal": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "KMSConfiguration": {
+      "required": [
+        "Name",
+        "CacheSize",
+        "Endpoint",
+        "Timeout"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "CacheSize": {
+          "type": "integer"
+        },
+        "Endpoint": {
+          "type": "string"
+        },
+        "Timeout": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/Duration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Key": {
+      "required": [
+        "Name",
+        "Secret"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Secret": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "KeyToPath": {
+      "required": [
+        "key",
+        "path"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "KubeAPIService": {
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "extraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "extraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "winExtraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "serviceClusterIpRange": {
+          "type": "string"
+        },
+        "serviceNodePortRange": {
+          "type": "string"
+        },
+        "podSecurityPolicy": {
+          "type": "boolean"
+        },
+        "alwaysPullImages": {
+          "type": "boolean"
+        },
+        "secretsEncryptionConfig": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/SecretsEncryptionConfig"
+        },
+        "auditLog": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AuditLog"
+        },
+        "admissionConfiguration": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AdmissionConfiguration"
+        },
+        "eventRateLimit": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/EventRateLimit"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "KubeControllerService": {
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "extraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "extraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "winExtraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clusterCidr": {
+          "type": "string"
+        },
+        "serviceClusterIpRange": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "KubeletService": {
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "extraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "extraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "winExtraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clusterDomain": {
+          "type": "string"
+        },
+        "infraContainerImage": {
+          "type": "string"
+        },
+        "clusterDnsServer": {
+          "type": "string"
+        },
+        "failSwapOn": {
+          "type": "boolean"
+        },
+        "generateServingCertificate": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "KubeproxyService": {
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "extraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "extraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "winExtraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "LabelSelector": {
+      "properties": {
+        "matchLabels": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "matchExpressions": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/LabelSelectorRequirement"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "LabelSelectorRequirement": {
+      "required": [
+        "key",
+        "operator"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Limit": {
+      "required": [
+        "type",
+        "qps",
+        "burst"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "qps": {
+          "type": "integer"
+        },
+        "burst": {
+          "type": "integer"
+        },
+        "cacheSize": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "LinearAutoscalerParams": {
+      "properties": {
+        "coresPerReplica": {
+          "type": "number"
+        },
+        "nodesPerReplica": {
+          "type": "number"
+        },
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "preventSinglePointFailure": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "LoadBalancerOpenstackOpts": {
+      "required": [
+        "lb-version",
+        "use-octavia",
+        "subnet-id",
+        "floating-network-id",
+        "lb-method",
+        "lb-provider",
+        "create-monitor",
+        "monitor-delay",
+        "monitor-timeout",
+        "monitor-max-retries",
+        "manage-security-groups"
+      ],
+      "properties": {
+        "lb-version": {
+          "type": "string"
+        },
+        "use-octavia": {
+          "type": "boolean"
+        },
+        "subnet-id": {
+          "type": "string"
+        },
+        "floating-network-id": {
+          "type": "string"
+        },
+        "lb-method": {
+          "type": "string"
+        },
+        "lb-provider": {
+          "type": "string"
+        },
+        "create-monitor": {
+          "type": "boolean"
+        },
+        "monitor-delay": {
+          "type": "string"
+        },
+        "monitor-timeout": {
+          "type": "string"
+        },
+        "monitor-max-retries": {
+          "type": "integer"
+        },
+        "manage-security-groups": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "LocalObjectReference": {
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ManagedFieldsEntry": {
+      "properties": {
+        "manager": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "apiVersion": {
+          "type": "string"
+        },
+        "time": {
+          "$ref": "#/definitions/Time"
+        },
+        "fieldsType": {
+          "type": "string"
+        },
+        "fieldsV1": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/FieldsV1"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "MetadataOpenstackOpts": {
+      "required": [
+        "search-order",
+        "request-timeout"
+      ],
+      "properties": {
+        "search-order": {
+          "type": "string"
+        },
+        "request-timeout": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "MonitoringConfig": {
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "options": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "nodeSelector": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "updateStrategy": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/DeploymentStrategy"
+        },
+        "replicas": {
+          "type": "integer"
+        },
+        "tolerations": {
+          "items": {
+            "$ref": "#/definitions/Toleration"
+          },
+          "type": "array"
+        },
+        "metricsServerPriorityClassName": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "NFSVolumeSource": {
+      "required": [
+        "server",
+        "path"
+      ],
+      "properties": {
+        "server": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "NetworkConfig": {
+      "properties": {
+        "plugin": {
+          "type": "string"
+        },
+        "options": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "mtu": {
+          "type": "integer"
+        },
+        "calicoNetworkProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/CalicoNetworkProvider"
+        },
+        "canalNetworkProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/CanalNetworkProvider"
+        },
+        "flannelNetworkProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/FlannelNetworkProvider"
+        },
+        "weaveNetworkProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/WeaveNetworkProvider"
+        },
+        "aciNetworkProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AciNetworkProvider"
+        },
+        "nodeSelector": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "updateStrategy": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/DaemonSetUpdateStrategy"
+        },
+        "tolerations": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/Toleration"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "NetworkVshpereOpts": {
+      "properties": {
+        "public-network": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "NodeDrainInput": {
+      "required": [
+        "timeout"
+      ],
+      "properties": {
+        "force": {
+          "type": "boolean"
+        },
+        "ignoreDaemonSets": {
+          "type": "boolean"
+        },
+        "deleteLocalData": {
+          "type": "boolean"
+        },
+        "gracePeriod": {
+          "type": "integer"
+        },
+        "timeout": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "NodeUpgradeStrategy": {
+      "properties": {
+        "maxUnavailableWorker": {
+          "type": "string"
+        },
+        "maxUnavailableControlplane": {
+          "type": "string"
+        },
+        "drain": {
+          "type": "boolean"
+        },
+        "nodeDrainInput": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/NodeDrainInput"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Nodelocal": {
+      "properties": {
+        "ipAddress": {
+          "type": "string"
+        },
+        "updateStrategy": {
+          "$ref": "#/definitions/DaemonSetUpdateStrategy"
+        },
+        "nodeSelector": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "nodeLocalDnsPriorityClassName": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ObjectFieldSelector": {
+      "required": [
+        "fieldPath"
+      ],
+      "properties": {
+        "apiVersion": {
+          "type": "string"
+        },
+        "fieldPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ObjectMeta": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "generateName": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "selfLink": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "resourceVersion": {
+          "type": "string"
+        },
+        "generation": {
+          "type": "integer"
+        },
+        "creationTimestamp": {
+          "$ref": "#/definitions/Time"
+        },
+        "deletionTimestamp": {
+          "$ref": "#/definitions/Time"
+        },
+        "deletionGracePeriodSeconds": {
+          "type": "integer"
+        },
+        "labels": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "annotations": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "ownerReferences": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/OwnerReference"
+          },
+          "type": "array"
+        },
+        "finalizers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clusterName": {
+          "type": "string"
+        },
+        "managedFields": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/ManagedFieldsEntry"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "OpenstackCloudProvider": {
+      "required": [
+        "global",
+        "loadBalancer",
+        "blockStorage",
+        "route",
+        "metadata"
+      ],
+      "properties": {
+        "global": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/GlobalOpenstackOpts"
+        },
+        "loadBalancer": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/LoadBalancerOpenstackOpts"
+        },
+        "blockStorage": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/BlockStorageOpenstackOpts"
+        },
+        "route": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/RouteOpenstackOpts"
+        },
+        "metadata": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/MetadataOpenstackOpts"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "OwnerReference": {
+      "required": [
+        "apiVersion",
+        "kind",
+        "name",
+        "uid"
+      ],
+      "properties": {
+        "apiVersion": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "controller": {
+          "type": "boolean"
+        },
+        "blockOwnerDeletion": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "PersistentVolumeClaimSpec": {
+      "properties": {
+        "accessModes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "selector": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/LabelSelector"
+        },
+        "resources": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ResourceRequirements"
+        },
+        "volumeName": {
+          "type": "string"
+        },
+        "storageClassName": {
+          "type": "string"
+        },
+        "volumeMode": {
+          "type": "string"
+        },
+        "dataSource": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/TypedLocalObjectReference"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "PersistentVolumeClaimTemplate": {
+      "required": [
+        "spec"
+      ],
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/ObjectMeta"
+        },
+        "spec": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/PersistentVolumeClaimSpec"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "PersistentVolumeClaimVolumeSource": {
+      "required": [
+        "claimName"
+      ],
+      "properties": {
+        "claimName": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "PhotonPersistentDiskVolumeSource": {
+      "required": [
+        "pdID"
+      ],
+      "properties": {
+        "pdID": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Policy": {
+      "required": [
+        "TypeMeta",
+        "rules"
+      ],
+      "properties": {
+        "TypeMeta": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/TypeMeta"
+        },
+        "metadata": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ObjectMeta"
+        },
+        "rules": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/PolicyRule"
+          },
+          "type": "array"
+        },
+        "omitStages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "PolicyRule": {
+      "required": [
+        "level"
+      ],
+      "properties": {
+        "level": {
+          "type": "string"
+        },
+        "users": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "userGroups": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "verbs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resources": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/GroupResources"
+          },
+          "type": "array"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nonResourceURLs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "omitStages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "PortworxVolumeSource": {
+      "required": [
+        "volumeID"
+      ],
+      "properties": {
+        "volumeID": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "PrivateRegistry": {
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "isDefault": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ProjectedVolumeSource": {
+      "required": [
+        "sources"
+      ],
+      "properties": {
+        "sources": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/VolumeProjection"
+          },
+          "type": "array"
+        },
+        "defaultMode": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ProviderConfiguration": {
+      "required": [
+        "AESGCM",
+        "AESCBC",
+        "Secretbox",
+        "Identity",
+        "KMS"
+      ],
+      "properties": {
+        "AESGCM": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AESConfiguration"
+        },
+        "AESCBC": {
+          "$ref": "#/definitions/AESConfiguration"
+        },
+        "Secretbox": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/SecretboxConfiguration"
+        },
+        "Identity": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/IdentityConfiguration"
+        },
+        "KMS": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/KMSConfiguration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Quantity": {
+      "properties": {},
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "QuobyteVolumeSource": {
+      "required": [
+        "registry",
+        "volume"
+      ],
+      "properties": {
+        "registry": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "user": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "tenant": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RBDVolumeSource": {
+      "required": [
+        "monitors",
+        "image"
+      ],
+      "properties": {
+        "monitors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "image": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "pool": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "keyring": {
+          "type": "string"
+        },
+        "secretRef": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RKEConfigNode": {
+      "properties": {
+        "nodeName": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "port": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "internalAddress": {
+          "type": "string"
+        },
+        "role": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hostnameOverride": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "dockerSocket": {
+          "type": "string"
+        },
+        "sshAgentAuth": {
+          "type": "boolean"
+        },
+        "sshKey": {
+          "type": "string"
+        },
+        "sshKeyPath": {
+          "type": "string"
+        },
+        "sshCert": {
+          "type": "string"
+        },
+        "sshCertPath": {
+          "type": "string"
+        },
+        "labels": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "taints": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/RKETaint"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RKEConfigServices": {
+      "properties": {
+        "etcd": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ETCDService"
+        },
+        "kubeApi": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/KubeAPIService"
+        },
+        "kubeController": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/KubeControllerService"
+        },
+        "scheduler": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/SchedulerService"
+        },
+        "kubelet": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/KubeletService"
+        },
+        "kubeproxy": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/KubeproxyService"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RKESystemImages": {
+      "properties": {
+        "etcd": {
+          "type": "string"
+        },
+        "alpine": {
+          "type": "string"
+        },
+        "nginxProxy": {
+          "type": "string"
+        },
+        "certDownloader": {
+          "type": "string"
+        },
+        "kubernetesServicesSidecar": {
+          "type": "string"
+        },
+        "kubedns": {
+          "type": "string"
+        },
+        "dnsmasq": {
+          "type": "string"
+        },
+        "kubednsSidecar": {
+          "type": "string"
+        },
+        "kubednsAutoscaler": {
+          "type": "string"
+        },
+        "coredns": {
+          "type": "string"
+        },
+        "corednsAutoscaler": {
+          "type": "string"
+        },
+        "nodelocal": {
+          "type": "string"
+        },
+        "kubernetes": {
+          "type": "string"
+        },
+        "flannel": {
+          "type": "string"
+        },
+        "flannelCni": {
+          "type": "string"
+        },
+        "calicoNode": {
+          "type": "string"
+        },
+        "calicoCni": {
+          "type": "string"
+        },
+        "calicoControllers": {
+          "type": "string"
+        },
+        "calicoCtl": {
+          "type": "string"
+        },
+        "calicoFlexVol": {
+          "type": "string"
+        },
+        "canalNode": {
+          "type": "string"
+        },
+        "canalCni": {
+          "type": "string"
+        },
+        "canalControllers": {
+          "type": "string"
+        },
+        "canalFlannel": {
+          "type": "string"
+        },
+        "canalFlexVol": {
+          "type": "string"
+        },
+        "weaveNode": {
+          "type": "string"
+        },
+        "weaveCni": {
+          "type": "string"
+        },
+        "podInfraContainer": {
+          "type": "string"
+        },
+        "ingress": {
+          "type": "string"
+        },
+        "ingressBackend": {
+          "type": "string"
+        },
+        "metricsServer": {
+          "type": "string"
+        },
+        "windowsPodInfraContainer": {
+          "type": "string"
+        },
+        "aciCniDeployContainer": {
+          "type": "string"
+        },
+        "aciHostContainer": {
+          "type": "string"
+        },
+        "aciOpflexContainer": {
+          "type": "string"
+        },
+        "aciMcastContainer": {
+          "type": "string"
+        },
+        "aciOvsContainer": {
+          "type": "string"
+        },
+        "aciControllerContainer": {
+          "type": "string"
+        },
+        "aciGbpServerContainer": {
+          "type": "string"
+        },
+        "aciOpflexServerContainer": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RKETaint": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "effect": {
+          "type": "string"
+        },
+        "timeAdded": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/Time"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RancherKubernetesEngineConfig": {
+      "properties": {
+        "nodes": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/RKEConfigNode"
+          },
+          "type": "array"
+        },
+        "services": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/RKEConfigServices"
+        },
+        "network": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/NetworkConfig"
+        },
+        "authentication": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AuthnConfig"
+        },
+        "addons": {
+          "type": "string"
+        },
+        "addonsInclude": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "systemImages": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/RKESystemImages"
+        },
+        "sshKeyPath": {
+          "type": "string"
+        },
+        "sshCertPath": {
+          "type": "string"
+        },
+        "sshAgentAuth": {
+          "type": "boolean"
+        },
+        "authorization": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AuthzConfig"
+        },
+        "ignoreDockerVersion": {
+          "type": "boolean"
+        },
+        "kubernetesVersion": {
+          "type": "string"
+        },
+        "privateRegistries": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/PrivateRegistry"
+          },
+          "type": "array"
+        },
+        "ingress": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/IngressConfig"
+        },
+        "clusterName": {
+          "type": "string"
+        },
+        "cloudProvider": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/CloudProvider"
+        },
+        "prefixPath": {
+          "type": "string"
+        },
+        "winPrefixPath": {
+          "type": "string"
+        },
+        "addonJobTimeout": {
+          "type": "integer"
+        },
+        "bastionHost": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/BastionHost"
+        },
+        "monitoring": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/MonitoringConfig"
+        },
+        "restore": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/RestoreConfig"
+        },
+        "rotateCertificates": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/RotateCertificates"
+        },
+        "rotateEncryptionKey": {
+          "type": "boolean"
+        },
+        "dns": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/DNSConfig"
+        },
+        "upgradeStrategy": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/NodeUpgradeStrategy"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ResourceConfiguration": {
+      "required": [
+        "Resources",
+        "Providers"
+      ],
+      "properties": {
+        "Resources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "Providers": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/ProviderConfiguration"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ResourceFieldSelector": {
+      "required": [
+        "resource"
+      ],
+      "properties": {
+        "containerName": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "divisor": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/Quantity"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ResourceRequirements": {
+      "properties": {
+        "limits": {
+          "patternProperties": {
+            ".*": {
+              "$ref": "#/definitions/Quantity"
+            }
+          },
+          "type": "object"
+        },
+        "requests": {
+          "patternProperties": {
+            ".*": {
+              "$ref": "#/definitions/Quantity"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RestoreConfig": {
+      "properties": {
+        "restore": {
+          "type": "boolean"
+        },
+        "snapshotName": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RollingUpdateDaemonSet": {
+      "properties": {
+        "maxUnavailable": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/IntOrString"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RollingUpdateDeployment": {
+      "properties": {
+        "maxUnavailable": {
+          "$ref": "#/definitions/IntOrString"
+        },
+        "maxSurge": {
+          "$ref": "#/definitions/IntOrString"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RotateCertificates": {
+      "properties": {
+        "caCertificates": {
+          "type": "boolean"
+        },
+        "services": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "RouteOpenstackOpts": {
+      "required": [
+        "router-id"
+      ],
+      "properties": {
+        "router-id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "S3BackupConfig": {
+      "required": [
+        "endpoint"
+      ],
+      "properties": {
+        "accessKey": {
+          "type": "string"
+        },
+        "secretKey": {
+          "type": "string"
+        },
+        "bucketName": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "customCa": {
+          "type": "string"
+        },
+        "folder": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ScaleIOVolumeSource": {
+      "required": [
+        "gateway",
+        "system",
+        "secretRef"
+      ],
+      "properties": {
+        "gateway": {
+          "type": "string"
+        },
+        "system": {
+          "type": "string"
+        },
+        "secretRef": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "sslEnabled": {
+          "type": "boolean"
+        },
+        "protectionDomain": {
+          "type": "string"
+        },
+        "storagePool": {
+          "type": "string"
+        },
+        "storageMode": {
+          "type": "string"
+        },
+        "volumeName": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "SchedulerService": {
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "extraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "extraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraArgs": {
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "winExtraBinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "winExtraEnv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "SecretKeySelector": {
+      "required": [
+        "LocalObjectReference",
+        "key"
+      ],
+      "properties": {
+        "LocalObjectReference": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "key": {
+          "type": "string"
+        },
+        "optional": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "SecretProjection": {
+      "required": [
+        "LocalObjectReference"
+      ],
+      "properties": {
+        "LocalObjectReference": {
+          "$ref": "#/definitions/LocalObjectReference"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/KeyToPath"
+          },
+          "type": "array"
+        },
+        "optional": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "SecretVolumeSource": {
+      "properties": {
+        "secretName": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/KeyToPath"
+          },
+          "type": "array"
+        },
+        "defaultMode": {
+          "type": "integer"
+        },
+        "optional": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "SecretboxConfiguration": {
+      "required": [
+        "Keys"
+      ],
+      "properties": {
+        "Keys": {
+          "items": {
+            "$ref": "#/definitions/Key"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "SecretsEncryptionConfig": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "customConfig": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/EncryptionConfiguration"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ServiceAccountTokenProjection": {
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "audience": {
+          "type": "string"
+        },
+        "expirationSeconds": {
+          "type": "integer"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ServiceOverride": {
+      "required": [
+        "service",
+        "region",
+        "url",
+        "signing-region",
+        "signing-method",
+        "signing-name"
+      ],
+      "properties": {
+        "service": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "signing-region": {
+          "type": "string"
+        },
+        "signing-method": {
+          "type": "string"
+        },
+        "signing-name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "StorageOSVolumeSource": {
+      "properties": {
+        "volumeName": {
+          "type": "string"
+        },
+        "volumeNamespace": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "readOnly": {
+          "type": "boolean"
+        },
+        "secretRef": {
+          "$ref": "#/definitions/LocalObjectReference"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Time": {
+      "properties": {},
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Toleration": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "effect": {
+          "type": "string"
+        },
+        "tolerationSeconds": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "TypeMeta": {
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "apiVersion": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "TypedLocalObjectReference": {
+      "required": [
+        "apiGroup",
+        "kind",
+        "name"
+      ],
+      "properties": {
+        "apiGroup": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Unknown": {
+      "required": [
+        "TypeMeta",
+        "Raw",
+        "ContentEncoding",
+        "ContentType"
+      ],
+      "properties": {
+        "TypeMeta": {
+          "$ref": "#/definitions/TypeMeta"
+        },
+        "Raw": {
+          "type": "string",
+          "media": {
+            "binaryEncoding": "base64"
+          }
+        },
+        "ContentEncoding": {
+          "type": "string"
+        },
+        "ContentType": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "VirtualCenterConfig": {
+      "properties": {
+        "user": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "port": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "datacenters": {
+          "type": "string"
+        },
+        "soap-roundtrip-count": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "VolumeProjection": {
+      "properties": {
+        "secret": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/SecretProjection"
+        },
+        "downwardAPI": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/DownwardAPIProjection"
+        },
+        "configMap": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ConfigMapProjection"
+        },
+        "serviceAccountToken": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ServiceAccountTokenProjection"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "VolumeSource": {
+      "properties": {
+        "hostPath": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/HostPathVolumeSource"
+        },
+        "emptyDir": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/EmptyDirVolumeSource"
+        },
+        "gcePersistentDisk": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/GCEPersistentDiskVolumeSource"
+        },
+        "awsElasticBlockStore": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AWSElasticBlockStoreVolumeSource"
+        },
+        "gitRepo": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/GitRepoVolumeSource"
+        },
+        "secret": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/SecretVolumeSource"
+        },
+        "nfs": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/NFSVolumeSource"
+        },
+        "iscsi": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ISCSIVolumeSource"
+        },
+        "glusterfs": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/GlusterfsVolumeSource"
+        },
+        "persistentVolumeClaim": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/PersistentVolumeClaimVolumeSource"
+        },
+        "rbd": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/RBDVolumeSource"
+        },
+        "flexVolume": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/FlexVolumeSource"
+        },
+        "cinder": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/CinderVolumeSource"
+        },
+        "cephfs": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/CephFSVolumeSource"
+        },
+        "flocker": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/FlockerVolumeSource"
+        },
+        "downwardAPI": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/DownwardAPIVolumeSource"
+        },
+        "fc": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/FCVolumeSource"
+        },
+        "azureFile": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AzureFileVolumeSource"
+        },
+        "configMap": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ConfigMapVolumeSource"
+        },
+        "vsphereVolume": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/VsphereVirtualDiskVolumeSource"
+        },
+        "quobyte": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/QuobyteVolumeSource"
+        },
+        "azureDisk": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/AzureDiskVolumeSource"
+        },
+        "photonPersistentDisk": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/PhotonPersistentDiskVolumeSource"
+        },
+        "projected": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ProjectedVolumeSource"
+        },
+        "portworxVolume": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/PortworxVolumeSource"
+        },
+        "scaleIO": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/ScaleIOVolumeSource"
+        },
+        "storageos": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/StorageOSVolumeSource"
+        },
+        "csi": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/CSIVolumeSource"
+        },
+        "ephemeral": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/EphemeralVolumeSource"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "VsphereCloudProvider": {
+      "properties": {
+        "global": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/GlobalVsphereOpts"
+        },
+        "virtualCenter": {
+          "patternProperties": {
+            ".*": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "$ref": "#/definitions/VirtualCenterConfig"
+            }
+          },
+          "type": "object"
+        },
+        "network": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/NetworkVshpereOpts"
+        },
+        "disk": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/DiskVsphereOpts"
+        },
+        "workspace": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/WorkspaceVsphereOpts"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "VsphereVirtualDiskVolumeSource": {
+      "required": [
+        "volumePath"
+      ],
+      "properties": {
+        "volumePath": {
+          "type": "string"
+        },
+        "fsType": {
+          "type": "string"
+        },
+        "storagePolicyName": {
+          "type": "string"
+        },
+        "storagePolicyID": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "WeaveNetworkProvider": {
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "WorkspaceVsphereOpts": {
+      "properties": {
+        "server": {
+          "type": "string"
+        },
+        "datacenter": {
+          "type": "string"
+        },
+        "folder": {
+          "type": "string"
+        },
+        "default-datastore": {
+          "type": "string"
+        },
+        "resourcepool-path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    }
+  }
+}
