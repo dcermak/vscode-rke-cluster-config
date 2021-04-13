@@ -260,3 +260,6 @@ dist
 
 # Dependency directories (remove the comment below to include it)
 vendor/
+
+cluster-config-dumper
+vscode-rke-cluster-config-*vsix

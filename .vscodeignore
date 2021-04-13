@@ -1,0 +1,15 @@
+cluster-config-dumper
+vendor/**
+src/**
+.git/**
+.github/**
+.log/**
+.vscode/**
+**/*~
+
+go.mod
+go.sum
+*.go
+*.json
+.gitignore
+vscode-rke-cluster-config-*vsix
