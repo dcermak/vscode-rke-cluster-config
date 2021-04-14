@@ -28,7 +28,6 @@ const SCHEMA_URL =
 const CLUSTER_YAML_FILES = ["cluster.yml", "cluster.yaml"];
 
 export async function activate(): Promise<void> {
-  //  context: vscode.ExtensionContext
   const yamlConfSection = vscode.workspace.getConfiguration("yaml");
   const yamlSchemas = yamlConfSection.get<Record<string, string | string[]>>(
     "schemas",
