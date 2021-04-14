@@ -13,7 +13,8 @@
     "compile": "tsc -p ./",
     "cleandeps": "rm -rf node_modules",
     "package": "vsce package --yarn",
-    "schema": "go run dump_cluster_config_schema.go && jq -c 'walk(if type == \"object\" and has(\"$schema\") then del(.[\"$schema\"]) else . end)'  < ./schemas/cluster.yml.json|jq . > tmp.json && mv tmp.json ./schemas/cluster.yml.json && jq -c 'walk(if type == \"object\" and has(\"$schema\") then del(.[\"$schema\"]) else . end)'  < ./schemas/cluster.json|jq . > tmp.json && mv tmp.json ./schemas/cluster.json"
+    "schema": "go run dump_cluster_config_schema.go && jq -c 'walk(if type == \"object\" and has(\"$schema\") then del(.[\"$schema\"]) else . end)'  < ./schemas/cluster.yml.json|jq . > tmp.json && mv tmp.json ./schemas/cluster.yml.json && jq -c 'walk(if type == \"object\" and has(\"$schema\") then del(.[\"$schema\"]) else . end)'  < ./schemas/cluster.json|jq . > tmp.json && mv tmp.json ./schemas/cluster.json",
+    "schemaCheck": "./schemas/validate.js"
   },
   "repository": "https://github.com/dcermak/vscode-rke-cluster-config",
   "author": "Dan Čermák <dcermak@suse.com>",
@@ -23,9 +24,11 @@
   "dependencies": {},
   "extensionDependencies": ["redhat.vscode-yaml"],
   "devDependencies": {
+    "@exodus/schemasafe": "^1.0.0-rc.3",
     "@types/node": "^14",
     "typescript": "^4",
     "vsce": "^1.87",
-    "vscode": "^1.1"
+    "vscode": "^1.1",
+    "yaml": "^1.10.2"
   }
 }
