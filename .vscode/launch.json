@@ -8,6 +8,11 @@
       "runtimeExecutable": "${execPath}",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
       "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "env": { "EXTENSION_DEBUG": "1" },
+      "smartStep": true,
+      "sourceMaps": true,
+      "trace": true,
+      "preLaunchTask": "npm: compile"
     },
     {
       "name": "Extension Tests",
@@ -20,7 +25,7 @@
         "--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
       ],
       "outFiles": ["${workspaceFolder}/out/test/**/*.js"],
-      "preLaunchTask": "npm: watch"
+      "preLaunchTask": "npm: compile"
     }
   ]
 }

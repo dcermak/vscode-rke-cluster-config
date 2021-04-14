@@ -19,10 +19,13 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import { resolve } from "path";
 import * as vscode from "vscode";
 
-const schemaUrl =
-  "https://raw.githubusercontent.com/dcermak/vscode-rke-cluster-config/main/cluster.yml.json";
+const SCHEMA_URL =
+  "https://raw.githubusercontent.com/dcermak/vscode-rke-cluster-config/main/schemas/cluster.yml.json";
+
+const CLUSTER_YAML_FILES = ["cluster.yml", "cluster.yaml"];
 
 export async function activate(): Promise<void> {
   //  context: vscode.ExtensionContext
@@ -32,8 +35,18 @@ export async function activate(): Promise<void> {
     {}
   );
 
-  if (yamlSchemas[schemaUrl] === undefined) {
-    yamlSchemas[schemaUrl] = ["cluster.yml", "cluster.yaml"];
+  const debug = process.env.EXTENSION_DEBUG === "1";
+
+  const key = debug
+    ? resolve(__dirname, "..", "schemas", "cluster.yml.json")
+    : SCHEMA_URL;
+
+  if (yamlSchemas[key] === undefined) {
+    if (debug) {
+      delete yamlSchemas[SCHEMA_URL];
+    }
+    yamlSchemas[key] = CLUSTER_YAML_FILES;
+
     await yamlConfSection.update(
       "schemas",
       yamlSchemas,
