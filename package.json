@@ -19,7 +19,7 @@
   },
   "repository": "https://github.com/dcermak/vscode-rke-cluster-config",
   "author": "Dan Čermák <dcermak@suse.com>",
-  "publisher": "dcermak",
+  "publisher": "dancermak",
   "preview": true,
   "license": "MIT",
   "repository": {
