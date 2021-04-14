@@ -26,16 +26,25 @@ import (
 
 	"github.com/alecthomas/jsonschema"
 	conf "github.com/rancher/rke/types"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// map the type NumberStringMap from rke/types to a json schema type that
-// supports not only strings as values but also numbers
-func numberStringMapMapper(i reflect.Type) *jsonschema.Type {
+var byteSliceType = reflect.TypeOf([]byte(nil))
+
+// typeAdjust changes the json schema of the following types used in conf.RancherKubernetesEngineConfig:
+// - NumberStringMap is converted a json schema type that supports not only strings as values but also numbers
+// - metav1.Time is changed to a date-time string
+// - byte slices are change to ordinary strings (the schema validator does not support media: {} entries)
+func typeAdjust(i reflect.Type) *jsonschema.Type {
 	if i == reflect.TypeOf(conf.NumberStringMap{}) {
 		return &jsonschema.Type{
 			Type:              "object",
 			PatternProperties: map[string]*jsonschema.Type{".*": {OneOf: []*jsonschema.Type{{Type: "string"}, {Type: "number"}}}},
 		}
+	} else if i == reflect.TypeOf(&metav1.Time{}) {
+		return &jsonschema.Type{Type: "string", Format: "date-time"}
+	} else if i.Kind() == reflect.Slice && i.Elem() == byteSliceType.Elem() {
+		return &jsonschema.Type{Type: "string"}
 	}
 	return nil
 }
@@ -43,12 +52,12 @@ func numberStringMapMapper(i reflect.Type) *jsonschema.Type {
 func main() {
 	rkec := conf.RancherKubernetesEngineConfig{}
 
-	r := jsonschema.Reflector{TypeMapper: numberStringMapMapper}
+	r := jsonschema.Reflector{TypeMapper: typeAdjust}
 	schema, err := json.MarshalIndent(r.Reflect(&rkec), "", "  ")
 	if err != nil {
 		panic(err)
 	}
-	err = ioutil.WriteFile("cluster.json", schema, 0644)
+	err = ioutil.WriteFile("schemas/cluster.json", schema, 0644)
 	if err != nil {
 		panic(err)
 	}
@@ -58,7 +67,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = ioutil.WriteFile("cluster.yml.json", schema, 0644)
+	err = ioutil.WriteFile("schemas/cluster.yml.json", schema, 0644)
 	if err != nil {
 		panic(err)
 	}

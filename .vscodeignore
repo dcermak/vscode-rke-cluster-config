@@ -6,6 +6,7 @@ src/**
 .log/**
 .vscode/**
 **/*~
+schemas/**
 
 go.mod
 go.sum
