@@ -3,8 +3,9 @@
   "engines": {
     "vscode": "^1.50.0"
   },
-  "categories": ["Other"],
+  "categories": ["Other", "Linters"],
   "activationEvents": ["onLanguage:yaml"],
+  "keywords": ["rancher", "rke", "configuration", "kubernetes", "yaml", "k8s"],
   "version": "0.0.1",
   "description": "VSCode extension for RKE cluster configuration",
   "main": "./out/extension",
@@ -21,6 +22,10 @@
   "publisher": "dcermak",
   "preview": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcermak/vscode-rke-cluster-config"
+  },
   "dependencies": {},
   "extensionDependencies": ["redhat.vscode-yaml"],
   "devDependencies": {
