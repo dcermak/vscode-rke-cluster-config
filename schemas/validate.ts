@@ -1,10 +1,29 @@
-#!/usr/bin/env node
+/**
+ * Copyright (c) 2021 SUSE LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
-const fs = require("fs");
-const { join } = require("path");
-const { inspect } = require("util");
-const { validator } = require("@exodus/schemasafe");
-const YAML = require("yaml");
+import { validator } from "@exodus/schemasafe";
+import { readFileSync } from "fs";
+import { resolve } from "path";
+import { inspect } from "util";
+import * as YAML from "yaml";
 
 // from https://rancher.com/docs/rke/latest/en/example-yamls/#minimal-cluster-yml-example
 const clusterYamlMinimal = YAML.parse(`nodes:
@@ -247,6 +266,49 @@ addons_include:
     - /path/to/manifest
 `);
 
+// from https://rancher.com/docs/rke/latest/en/config-options/nodes/
+const nodesOnlyClusterYaml = YAML.parse(`nodes:
+    - address: 1.1.1.1
+      user: ubuntu
+      role:
+      - controlplane
+      - etcd
+      ssh_key_path: /home/user/.ssh/id_rsa
+      port: 2222
+    - address: 2.2.2.2
+      user: ubuntu
+      role:
+      - worker
+      ssh_key: |-
+        -----BEGIN RSA PRIVATE KEY-----
+
+        -----END RSA PRIVATE KEY-----
+    - address: 3.3.3.3
+      user: ubuntu
+      role:
+      - worker
+      ssh_key_path: /home/user/.ssh/id_rsa
+      ssh_cert_path: /home/user/.ssh/id_rsa-cert.pub
+    - address: 4.4.4.4
+      user: ubuntu
+      role:
+      - worker
+      ssh_key_path: /home/user/.ssh/id_rsa
+      ssh_cert: |-
+        ssh-rsa-cert-v01@openssh.com AAAAHHNza...
+      taints: # Available as of v0.3.0
+        - key: test-key
+          value: test-value
+          effect: NoSchedule
+    - address: example.com
+      user: ubuntu
+      role:
+      - worker
+      hostname_override: node3
+      internal_address: 192.168.1.6
+      labels:
+        app: ingress`);
+
 const invalidClusterYaml = YAML.parse(`nodes:
     - address: 1.2.3.4
       user: 16
@@ -259,10 +321,14 @@ extraKey:
 `);
 
 const validate = validator(
-  JSON.parse(fs.readFileSync(join(__dirname, "cluster.yml.json")))
+  JSON.parse(
+    readFileSync(resolve(__dirname, "..", "cluster.yml.json"), {
+      encoding: "utf-8",
+    })
+  )
 );
 
-[clusterYamlMinimal, clusterYamlFull].forEach((data) => {
+[clusterYamlMinimal, clusterYamlFull, nodesOnlyClusterYaml].forEach((data) => {
   if (!validate(data)) {
     throw new Error(
       `The following document failed validation: ${inspect(data, {
