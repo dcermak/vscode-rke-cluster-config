@@ -2,6 +2,7 @@
 
 [![extension build](https://img.shields.io/github/workflow/status/dcermak/vscode-rke-cluster-config/extension?label=extension%20build)](https://github.com/dcermak/vscode-rke-cluster-config/actions/workflows/extension.yml)
 [![schema check](https://img.shields.io/github/workflow/status/dcermak/vscode-rke-cluster-config/schema?label=schema%20check)](https://github.com/dcermak/vscode-rke-cluster-config/actions/workflows/schema.yml)
+[![go tests](https://img.shields.io/github/workflow/status/dcermak/vscode-rke-cluster-config/go?label=go%20test)](https://github.com/dcermak/vscode-rke-cluster-config/actions/workflows/go.yml)
 
 This extension adds support for linting & validation of the `cluster.yml`
 configuration file for RKE.
