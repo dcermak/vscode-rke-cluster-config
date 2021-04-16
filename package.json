@@ -12,6 +12,7 @@
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -p ./ && tsc -p ./tsconfig.schemas.json",
+    "clean": "rm -rf ./out/ ./schemas/out/",
     "cleandeps": "rm -rf node_modules",
     "package": "vsce package --yarn",
     "schema": "go run dump_cluster_config_schema.go && node ./schemas/out/process-schema.js",
