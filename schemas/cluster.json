@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "$ref": "#/definitions/RancherKubernetesEngineConfig",
   "definitions": {
     "AESConfiguration": {
@@ -367,10 +368,12 @@
     "AuthWebhookConfig": {
       "properties": {
         "configFile": {
-          "type": "string"
+          "type": "string",
+          "description": "ConfigFile is a multiline string that represent a custom webhook config file"
         },
         "cacheTimeout": {
-          "type": "string"
+          "type": "string",
+          "description": "CacheTimeout controls how long to cache authentication decisions"
         }
       },
       "additionalProperties": false,
@@ -379,16 +382,19 @@
     "AuthnConfig": {
       "properties": {
         "strategy": {
-          "type": "string"
+          "type": "string",
+          "description": "Authentication strategy that will be used in kubernetes cluster"
         },
         "sans": {
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "type": "array",
+          "description": "List of additional hostnames and IPs to include in the api server PKI cert"
         },
         "webhook": {
-          "$ref": "#/definitions/AuthWebhookConfig"
+          "$ref": "#/definitions/AuthWebhookConfig",
+          "description": "Webhook configuration options"
         }
       },
       "additionalProperties": false,
@@ -397,7 +403,8 @@
     "AuthzConfig": {
       "properties": {
         "mode": {
-          "type": "string"
+          "type": "string",
+          "description": "Authorization mode used by kubernetes"
         },
         "options": {
           "patternProperties": {
@@ -412,7 +419,8 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "Authorization mode options"
         }
       },
       "additionalProperties": false,
@@ -451,97 +459,128 @@
       ],
       "properties": {
         "cloud": {
-          "type": "string"
+          "type": "string",
+          "description": "The cloud environment identifier. Takes values from https://github.com/Azure/go-autorest/blob/ec5f4903f77ed9927ac95b19ab8e44ada64c1356/autorest/azure/environments.go#L13"
         },
         "tenantId": {
-          "type": "string"
+          "type": "string",
+          "description": "The AAD Tenant ID for the Subscription that the cluster is deployed in"
         },
         "subscriptionId": {
-          "type": "string"
+          "type": "string",
+          "description": "The ID of the Azure Subscription that the cluster is deployed in"
         },
         "resourceGroup": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the resource group that the cluster is deployed in"
         },
         "location": {
-          "type": "string"
+          "type": "string",
+          "description": "The location of the resource group that the cluster is deployed in"
         },
         "vnetName": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the VNet that the cluster is deployed in"
         },
         "vnetResourceGroup": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the resource group that the Vnet is deployed in"
         },
         "subnetName": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the subnet that the cluster is deployed in"
         },
         "securityGroupName": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the security group attached to the cluster's subnet"
         },
         "routeTableName": {
-          "type": "string"
+          "type": "string",
+          "description": "(Optional in 1.6) The name of the route table attached to the subnet that the cluster is deployed in"
         },
         "primaryAvailabilitySetName": {
-          "type": "string"
+          "type": "string",
+          "description": "(Optional) The name of the availability set that should be used as the load balancer backend\nIf this is set, the Azure cloudprovider will only add nodes from that availability set to the load\nbalancer backend pool. If this is not set, and multiple agent pools (availability sets) are used, then\nthe cloudprovider will try to add all nodes to a single backend pool which is forbidden.\nIn other words, if you use multiple agent pools (availability sets), you MUST set this field."
         },
         "vmType": {
-          "type": "string"
+          "type": "string",
+          "description": "The type of azure nodes. Candidate valudes are: vmss and standard.\nIf not set, it will be default to standard."
         },
         "primaryScaleSetName": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the scale set that should be used as the load balancer backend.\nIf this is set, the Azure cloudprovider will only add nodes from that scale set to the load\nbalancer backend pool. If this is not set, and multiple agent pools (scale sets) are used, then\nthe cloudprovider will try to add all nodes to a single backend pool which is forbidden.\nIn other words, if you use multiple agent pools (scale sets), you MUST set this field."
         },
         "aadClientId": {
-          "type": "string"
+          "type": "string",
+          "description": "The ClientID for an AAD application with RBAC access to talk to Azure RM APIs\nThis's used for service principal authentication: https://github.com/Azure/aks-engine/blob/master/docs/topics/service-principals.md"
         },
         "aadClientSecret": {
-          "type": "string"
+          "type": "string",
+          "description": "The ClientSecret for an AAD application with RBAC access to talk to Azure RM APIs\nThis's used for service principal authentication: https://github.com/Azure/aks-engine/blob/master/docs/topics/service-principals.md"
         },
         "aadClientCertPath": {
-          "type": "string"
+          "type": "string",
+          "description": "The path of a client certificate for an AAD application with RBAC access to talk to Azure RM APIs\nThis's used for client certificate authentication: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-oauth-service-to-service"
         },
         "aadClientCertPassword": {
-          "type": "string"
+          "type": "string",
+          "description": "The password of the client certificate for an AAD application with RBAC access to talk to Azure RM APIs\nThis's used for client certificate authentication: https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-protocols-oauth-service-to-service"
         },
         "cloudProviderBackoff": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Enable exponential backoff to manage resource request retries"
         },
         "cloudProviderBackoffRetries": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Backoff retry limit"
         },
         "cloudProviderBackoffExponent": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Backoff exponent"
         },
         "cloudProviderBackoffDuration": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Backoff duration"
         },
         "cloudProviderBackoffJitter": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Backoff jitter"
         },
         "cloudProviderRateLimit": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Enable rate limiting"
         },
         "cloudProviderRateLimitQPS": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Rate limit QPS"
         },
         "cloudProviderRateLimitBucket": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Rate limit Bucket Size"
         },
         "useInstanceMetadata": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Use instance metadata service where possible"
         },
         "useManagedIdentityExtension": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Use managed service identity for the virtual machine to access Azure ARM APIs\nThis's used for managed identity authentication: https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/overview\nFor user-assigned managed identity, need to set the below UserAssignedIdentityID"
         },
         "userAssignedIdentityID": {
-          "type": "string"
+          "type": "string",
+          "description": "The Client ID of the user assigned MSI which is assigned to the underlying VMs\nThis's used for managed identity authentication: https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/overview"
         },
         "maximumLoadBalancerRuleCount": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Maximum allowed LoadBalancer Rule Count is the limit enforced by Azure Load balancer, default(0) to 148"
         },
         "loadBalancerSku": {
-          "type": "string"
+          "type": "string",
+          "description": "Sku of Load Balancer and Public IP: `basic` or `standard`, default(blank) to `basic`"
         },
         "excludeMasterFromStandardLB": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Excludes master nodes (labeled with `node-role.kubernetes.io/master`) from the backend pool of Azure standard loadbalancer, default(nil) to `true`\nIf want adding the master nodes to ALB, this should be set to `false` and remove the `node-role.kubernetes.io/master` label from master nodes"
         }
       },
       "additionalProperties": false,
@@ -624,7 +663,8 @@
     "BastionHost": {
       "properties": {
         "address": {
-          "type": "string"
+          "type": "string",
+          "description": "Address of Bastion Host"
         },
         "port": {
           "oneOf": [
@@ -634,25 +674,32 @@
             {
               "type": "number"
             }
-          ]
+          ],
+          "description": "SSH Port of Bastion Host"
         },
         "user": {
-          "type": "string"
+          "type": "string",
+          "description": "ssh User to Bastion Host"
         },
         "sshAgentAuth": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "SSH Agent Auth enable"
         },
         "sshKey": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Private Key"
         },
         "sshKeyPath": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Private Key Path"
         },
         "sshCert": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Certificate"
         },
         "sshCertPath": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Certificate Path"
         }
       },
       "additionalProperties": false,
@@ -666,10 +713,12 @@
       ],
       "properties": {
         "bs-version": {
-          "type": "string"
+          "type": "string",
+          "description": "overrides autodetection. v1 or v2. Defaults to auto"
         },
         "trust-device-path": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "See Issue #33128"
         },
         "ignore-volume-az": {
           "type": "boolean"
@@ -720,7 +769,8 @@
       ],
       "properties": {
         "cloudProvider": {
-          "type": "string"
+          "type": "string",
+          "description": "Cloud provider type used with calico"
         }
       },
       "additionalProperties": false,
@@ -792,22 +842,28 @@
     "CloudProvider": {
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the Cloud Provider"
         },
         "awsCloudProvider": {
-          "$ref": "#/definitions/AWSCloudProvider"
+          "$ref": "#/definitions/AWSCloudProvider",
+          "description": "AWSCloudProvider"
         },
         "azureCloudProvider": {
-          "$ref": "#/definitions/AzureCloudProvider"
+          "$ref": "#/definitions/AzureCloudProvider",
+          "description": "AzureCloudProvider"
         },
         "openstackCloudProvider": {
-          "$ref": "#/definitions/OpenstackCloudProvider"
+          "$ref": "#/definitions/OpenstackCloudProvider",
+          "description": "OpenstackCloudProvider"
         },
         "vsphereCloudProvider": {
-          "$ref": "#/definitions/VsphereCloudProvider"
+          "$ref": "#/definitions/VsphereCloudProvider",
+          "description": "VsphereCloudProvider"
         },
         "customCloudProvider": {
-          "type": "string"
+          "type": "string",
+          "description": "CustomCloudProvider is a multiline string that represent a custom cloud config file"
         }
       },
       "additionalProperties": false,
@@ -899,7 +955,8 @@
     "DNSConfig": {
       "properties": {
         "provider": {
-          "type": "string"
+          "type": "string",
+          "description": "DNS provider"
         },
         "options": {
           "patternProperties": {
@@ -914,19 +971,22 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "DNS config options"
         },
         "upstreamnameservers": {
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Upstream nameservers"
         },
         "reversecidrs": {
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "type": "array",
+          "description": "ReverseCIDRs"
         },
         "stubdomains": {
           "patternProperties": {
@@ -937,7 +997,8 @@
               "type": "array"
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "Stubdomains"
         },
         "nodeSelector": {
           "patternProperties": {
@@ -952,22 +1013,27 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "NodeSelector key pair"
         },
         "nodelocal": {
-          "$ref": "#/definitions/Nodelocal"
+          "$ref": "#/definitions/Nodelocal",
+          "description": "Nodelocal DNS"
         },
         "updateStrategy": {
-          "$ref": "#/definitions/DeploymentStrategy"
+          "$ref": "#/definitions/DeploymentStrategy",
+          "description": "Update strategy"
         },
         "linearAutoscalerParams": {
-          "$ref": "#/definitions/LinearAutoscalerParams"
+          "$ref": "#/definitions/LinearAutoscalerParams",
+          "description": "Autoscaler fields to determine number of dns replicas"
         },
         "tolerations": {
           "items": {
             "$ref": "#/definitions/Toleration"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Tolerations for Deployments"
         }
       },
       "additionalProperties": false,
@@ -1122,37 +1188,48 @@
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "type": "array",
+          "description": "List of etcd urls"
         },
         "caCert": {
-          "type": "string"
+          "type": "string",
+          "description": "External CA certificate"
         },
         "cert": {
-          "type": "string"
+          "type": "string",
+          "description": "External Client certificate"
         },
         "key": {
-          "type": "string"
+          "type": "string",
+          "description": "External Client key"
         },
         "path": {
-          "type": "string"
+          "type": "string",
+          "description": "External etcd prefix"
         },
         "uid": {
-          "type": "integer"
+          "type": "integer",
+          "description": "UID to run etcd container as"
         },
         "gid": {
-          "type": "integer"
+          "type": "integer",
+          "description": "GID to run etcd container as"
         },
         "snapshot": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Etcd Recurring snapshot Service, used by rke only"
         },
         "retention": {
-          "type": "string"
+          "type": "string",
+          "description": "Etcd snapshot Retention period"
         },
         "creation": {
-          "type": "string"
+          "type": "string",
+          "description": "Etcd snapshot Creation period"
         },
         "backupConfig": {
-          "$ref": "#/definitions/BackupConfig"
+          "$ref": "#/definitions/BackupConfig",
+          "description": "Backup backend for etcd snapshots"
         }
       },
       "additionalProperties": false,
@@ -1333,7 +1410,8 @@
       ],
       "properties": {
         "iface": {
-          "type": "string"
+          "type": "string",
+          "description": "Alternate cloud interface for flannel"
         }
       },
       "additionalProperties": false,
@@ -1441,34 +1519,44 @@
       ],
       "properties": {
         "zone": {
-          "type": "string"
+          "type": "string",
+          "description": "TODO: Is there any use for this?  We can get it from the instance metadata service\nMaybe if we're not running on AWS, e.g. bootstrap; for now it is not very useful"
         },
         "vpc": {
-          "type": "string"
+          "type": "string",
+          "description": "The AWS VPC flag enables the possibility to run the master components\non a different aws account, on a different cloud provider or on-premises.\nIf the flag is set also the KubernetesClusterTag must be provided"
         },
         "subnet-id": {
-          "type": "string"
+          "type": "string",
+          "description": "SubnetID enables using a specific subnet to use for ELB's"
         },
         "routetable-id": {
-          "type": "string"
+          "type": "string",
+          "description": "RouteTableID enables using a specific RouteTable"
         },
         "role-arn": {
-          "type": "string"
+          "type": "string",
+          "description": "RoleARN is the IAM role to assume when interaction with AWS APIs."
         },
         "kubernetes-cluster-tag": {
-          "type": "string"
+          "type": "string",
+          "description": "KubernetesClusterTag is the legacy cluster id we'll use to identify our cluster resources"
         },
         "kubernetes-cluster-id": {
-          "type": "string"
+          "type": "string",
+          "description": "KubernetesClusterID is the cluster id we'll use to identify our cluster resources"
         },
         "disable-security-group-ingress": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "The aws provider creates an inbound rule per load balancer on the node security\ngroup. However, this can run into the AWS security group rule limit of 50 if\nmany LoadBalancers are created.\n\nThis flag disables the automatic ingress creation. It requires that the user\nhas setup a rule that allows inbound traffic on kubelet ports from the\nlocal VPC subnet (so load balancers can access it). E.g. 10.82.0.0/16 30000-32000."
         },
         "elb-security-group": {
-          "type": "string"
+          "type": "string",
+          "description": "AWS has a hard limit of 500 security groups. For large clusters creating a security group for each ELB\ncan cause the max number of security groups to be reached. If this is set instead of creating a new\nSecurity group for each ELB this security group will be used instead."
         },
         "disable-strict-zone-check": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "During the instantiation of an new AWS cloud provider, the detected region\nis validated against a known set of regions.\n\nIn a non-standard, AWS like environment (e.g. Eucalyptus), this check may\nbe undesirable.  Setting this to true will disable the check and provide\na warning that the check was skipped.  Please note that this is an\nexperimental feature and work-in-progress for the moment.  If you find\nyourself in an non-AWS cloud and open an issue, please indicate that in the\nissue body."
         }
       },
       "additionalProperties": false,
@@ -1685,7 +1773,8 @@
     "IngressConfig": {
       "properties": {
         "provider": {
-          "type": "string"
+          "type": "string",
+          "description": "Ingress controller type used by kubernetes"
         },
         "options": {
           "patternProperties": {
@@ -1700,7 +1789,8 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "These options are NOT for configuring Ingress's addon template.\nThey are used for its ConfigMap options specifically."
         },
         "nodeSelector": {
           "patternProperties": {
@@ -1715,7 +1805,8 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "NodeSelector key pair"
         },
         "extraArgs": {
           "patternProperties": {
@@ -1730,31 +1821,37 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "Ingress controller extra arguments"
         },
         "dnsPolicy": {
-          "type": "string"
+          "type": "string",
+          "description": "DNS Policy"
         },
         "extraEnvs": {
           "items": {
             "$ref": "#/definitions/ExtraEnv"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Extra Env vars"
         },
         "extraVolumes": {
           "items": {
             "$ref": "#/definitions/ExtraVolume"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Extra volumes"
         },
         "extraVolumeMounts": {
           "items": {
             "$ref": "#/definitions/ExtraVolumeMount"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Extra volume mounts"
         },
         "updateStrategy": {
-          "$ref": "#/definitions/DaemonSetUpdateStrategy"
+          "$ref": "#/definitions/DaemonSetUpdateStrategy",
+          "description": "nginx daemonset upgrade strategy"
         },
         "httpPort": {
           "oneOf": [
@@ -1764,7 +1861,8 @@
             {
               "type": "number"
             }
-          ]
+          ],
+          "description": "Http port for ingress controller daemonset"
         },
         "httpsPort": {
           "oneOf": [
@@ -1774,25 +1872,31 @@
             {
               "type": "number"
             }
-          ]
+          ],
+          "description": "Https port for ingress controller daemonset"
         },
         "networkMode": {
-          "type": "string"
+          "type": "string",
+          "description": "NetworkMode selector for ingress controller pods. Default is HostNetwork"
         },
         "tolerations": {
           "items": {
             "$ref": "#/definitions/Toleration"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Tolerations for Deployments"
         },
         "defaultBackend": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Enable or disable nginx default-http-backend"
         },
         "defaultHttpBackendPriorityClassName": {
-          "type": "string"
+          "type": "string",
+          "description": "Priority class name for Nginx-Ingress's \"default-http-backend\" deployment"
         },
         "nginxIngressControllerPriorityClassName": {
-          "type": "string"
+          "type": "string",
+          "description": "Priority class name for Nginx-Ingress's \"nginx-ingress-controller\" daemonset"
         }
       },
       "additionalProperties": false,
@@ -1937,28 +2041,36 @@
           "type": "array"
         },
         "serviceClusterIpRange": {
-          "type": "string"
+          "type": "string",
+          "description": "Virtual IP range that will be used by Kubernetes services"
         },
         "serviceNodePortRange": {
-          "type": "string"
+          "type": "string",
+          "description": "Port range for services defined with NodePort type"
         },
         "podSecurityPolicy": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Enabled/Disable PodSecurityPolicy"
         },
         "alwaysPullImages": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Enable/Disable AlwaysPullImages admissions plugin"
         },
         "secretsEncryptionConfig": {
-          "$ref": "#/definitions/SecretsEncryptionConfig"
+          "$ref": "#/definitions/SecretsEncryptionConfig",
+          "description": "Secrets encryption provider config"
         },
         "auditLog": {
-          "$ref": "#/definitions/AuditLog"
+          "$ref": "#/definitions/AuditLog",
+          "description": "Audit Log Configuration"
         },
         "admissionConfiguration": {
-          "$ref": "#/definitions/AdmissionConfiguration"
+          "$ref": "#/definitions/AdmissionConfiguration",
+          "description": "AdmissionConfiguration"
         },
         "eventRateLimit": {
-          "$ref": "#/definitions/EventRateLimit"
+          "$ref": "#/definitions/EventRateLimit",
+          "description": "Event Rate Limit configuration"
         }
       },
       "additionalProperties": false,
@@ -2024,10 +2136,12 @@
           "type": "array"
         },
         "clusterCidr": {
-          "type": "string"
+          "type": "string",
+          "description": "CIDR Range for Pods in cluster"
         },
         "serviceClusterIpRange": {
-          "type": "string"
+          "type": "string",
+          "description": "Virtual IP range that will be used by Kubernetes services"
         }
       },
       "additionalProperties": false,
@@ -2093,19 +2207,24 @@
           "type": "array"
         },
         "clusterDomain": {
-          "type": "string"
+          "type": "string",
+          "description": "Domain of the cluster (default: \"cluster.local\")"
         },
         "infraContainerImage": {
-          "type": "string"
+          "type": "string",
+          "description": "The image whose network/ipc namespaces containers in each pod will use"
         },
         "clusterDnsServer": {
-          "type": "string"
+          "type": "string",
+          "description": "Cluster DNS service ip"
         },
         "failSwapOn": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Fail if swap is enabled"
         },
         "generateServingCertificate": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Generate per node kubelet serving certificates created using kube-ca"
         }
       },
       "additionalProperties": false,
@@ -2283,19 +2402,24 @@
       ],
       "properties": {
         "lb-version": {
-          "type": "string"
+          "type": "string",
+          "description": "overrides autodetection. Only support v2."
         },
         "use-octavia": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "uses Octavia V2 service catalog endpoint"
         },
         "subnet-id": {
-          "type": "string"
+          "type": "string",
+          "description": "overrides autodetection."
         },
         "floating-network-id": {
-          "type": "string"
+          "type": "string",
+          "description": "If specified, will create floating ip for loadbalancer, or do not create floating ip."
         },
         "lb-method": {
-          "type": "string"
+          "type": "string",
+          "description": "default to ROUND_ROBIN."
         },
         "lb-provider": {
           "type": "string"
@@ -2372,7 +2496,8 @@
     "MonitoringConfig": {
       "properties": {
         "provider": {
-          "type": "string"
+          "type": "string",
+          "description": "Monitoring server provider"
         },
         "options": {
           "patternProperties": {
@@ -2387,7 +2512,8 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "These options are NOT for configuring the Metrics-Server's addon template.\nThey are used to pass command args to the metric-server's deployment containers specifically."
         },
         "nodeSelector": {
           "patternProperties": {
@@ -2402,22 +2528,27 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "NodeSelector key pair"
         },
         "updateStrategy": {
-          "$ref": "#/definitions/DeploymentStrategy"
+          "$ref": "#/definitions/DeploymentStrategy",
+          "description": "Update strategy"
         },
         "replicas": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Number of monitoring addon pods"
         },
         "tolerations": {
           "items": {
             "$ref": "#/definitions/Toleration"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Tolerations for Deployments"
         },
         "metricsServerPriorityClassName": {
-          "type": "string"
+          "type": "string",
+          "description": "Priority class name for Metrics-Server's \"metrics-server\" deployment"
         }
       },
       "additionalProperties": false,
@@ -2445,7 +2576,8 @@
     "NetworkConfig": {
       "properties": {
         "plugin": {
-          "type": "string"
+          "type": "string",
+          "description": "Network Plugin That will be used in kubernetes cluster"
         },
         "options": {
           "patternProperties": {
@@ -2460,25 +2592,32 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "Plugin options to configure network properties"
         },
         "mtu": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Set MTU for CNI provider"
         },
         "calicoNetworkProvider": {
-          "$ref": "#/definitions/CalicoNetworkProvider"
+          "$ref": "#/definitions/CalicoNetworkProvider",
+          "description": "CalicoNetworkProvider"
         },
         "canalNetworkProvider": {
-          "$ref": "#/definitions/CanalNetworkProvider"
+          "$ref": "#/definitions/CanalNetworkProvider",
+          "description": "CanalNetworkProvider"
         },
         "flannelNetworkProvider": {
-          "$ref": "#/definitions/FlannelNetworkProvider"
+          "$ref": "#/definitions/FlannelNetworkProvider",
+          "description": "FlannelNetworkProvider"
         },
         "weaveNetworkProvider": {
-          "$ref": "#/definitions/WeaveNetworkProvider"
+          "$ref": "#/definitions/WeaveNetworkProvider",
+          "description": "WeaveNetworkProvider"
         },
         "aciNetworkProvider": {
-          "$ref": "#/definitions/AciNetworkProvider"
+          "$ref": "#/definitions/AciNetworkProvider",
+          "description": "AciNetworkProvider"
         },
         "nodeSelector": {
           "patternProperties": {
@@ -2493,16 +2632,19 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "NodeSelector key pair"
         },
         "updateStrategy": {
-          "$ref": "#/definitions/DaemonSetUpdateStrategy"
+          "$ref": "#/definitions/DaemonSetUpdateStrategy",
+          "description": "Network plugin daemonset upgrade strategy"
         },
         "tolerations": {
           "items": {
             "$ref": "#/definitions/Toleration"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Tolerations for Deployments"
         }
       },
       "additionalProperties": false,
@@ -2523,19 +2665,24 @@
       ],
       "properties": {
         "force": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Drain node even if there are pods not managed by a ReplicationController, Job, or DaemonSet\nDrain will not proceed without Force set to true if there are such pods"
         },
         "ignoreDaemonSets": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "If there are DaemonSet-managed pods, drain will not proceed without IgnoreDaemonSets set to true\n(even when set to true, kubectl won't delete pods - so setting default to true)"
         },
         "deleteLocalData": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Continue even if there are pods using emptyDir"
         },
         "gracePeriod": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Period of time in seconds given to each pod to terminate gracefully.\nIf negative, the default value specified in the pod will be used"
         },
         "timeout": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Time to wait (in seconds) before giving up for one try"
         }
       },
       "additionalProperties": false,
@@ -2544,10 +2691,12 @@
     "NodeUpgradeStrategy": {
       "properties": {
         "maxUnavailableWorker": {
-          "type": "string"
+          "type": "string",
+          "description": "MaxUnavailableWorker input can be a number of nodes or a percentage of nodes (example, max_unavailable_worker: 2 OR max_unavailable_worker: 20%)"
         },
         "maxUnavailableControlplane": {
-          "type": "string"
+          "type": "string",
+          "description": "MaxUnavailableControlplane input can be a number of nodes or a percentage of nodes"
         },
         "drain": {
           "type": "boolean"
@@ -2562,10 +2711,12 @@
     "Nodelocal": {
       "properties": {
         "ipAddress": {
-          "type": "string"
+          "type": "string",
+          "description": "link-local IP for nodelocal DNS"
         },
         "updateStrategy": {
-          "$ref": "#/definitions/DaemonSetUpdateStrategy"
+          "$ref": "#/definitions/DaemonSetUpdateStrategy",
+          "description": "Nodelocal DNS daemonset upgrade strategy"
         },
         "nodeSelector": {
           "patternProperties": {
@@ -2580,10 +2731,12 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "NodeSelector key pair"
         },
         "nodeLocalDnsPriorityClassName": {
-          "type": "string"
+          "type": "string",
+          "description": "Priority class name for NodeLocal's \"node-local-dns\" daemonset"
         }
       },
       "additionalProperties": false,
@@ -2928,16 +3081,20 @@
     "PrivateRegistry": {
       "properties": {
         "url": {
-          "type": "string"
+          "type": "string",
+          "description": "URL for the registry"
         },
         "user": {
-          "type": "string"
+          "type": "string",
+          "description": "User name for registry acces"
         },
         "password": {
-          "type": "string"
+          "type": "string",
+          "description": "Password for registry access"
         },
         "isDefault": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Default registry"
         }
       },
       "additionalProperties": false,
@@ -3062,10 +3219,12 @@
     "RKEConfigNode": {
       "properties": {
         "nodeName": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the host provisioned via docker machine"
         },
         "address": {
-          "type": "string"
+          "type": "string",
+          "description": "IP or FQDN that is fully resolvable and used for SSH communication"
         },
         "port": {
           "oneOf": [
@@ -3075,40 +3234,51 @@
             {
               "type": "number"
             }
-          ]
+          ],
+          "description": "Port used for SSH communication"
         },
         "internalAddress": {
-          "type": "string"
+          "type": "string",
+          "description": "Optional - Internal address that will be used for components communication"
         },
         "role": {
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Node role in kubernetes cluster (controlplane, worker, or etcd)"
         },
         "hostnameOverride": {
-          "type": "string"
+          "type": "string",
+          "description": "Optional - Hostname of the node"
         },
         "user": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH usesr that will be used by RKE"
         },
         "dockerSocket": {
-          "type": "string"
+          "type": "string",
+          "description": "Optional - Docker socket on the node that will be used in tunneling"
         },
         "sshAgentAuth": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "SSH Agent Auth enable"
         },
         "sshKey": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Private Key"
         },
         "sshKeyPath": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Private Key Path"
         },
         "sshCert": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Certificate"
         },
         "sshCertPath": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Certificate Path"
         },
         "labels": {
           "patternProperties": {
@@ -3123,13 +3293,15 @@
               ]
             }
           },
-          "type": "object"
+          "type": "object",
+          "description": "Node Labels"
         },
         "taints": {
           "items": {
             "$ref": "#/definitions/RKETaint"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Node Taints"
         }
       },
       "additionalProperties": false,
@@ -3138,22 +3310,28 @@
     "RKEConfigServices": {
       "properties": {
         "etcd": {
-          "$ref": "#/definitions/ETCDService"
+          "$ref": "#/definitions/ETCDService",
+          "description": "Etcd Service"
         },
         "kubeApi": {
-          "$ref": "#/definitions/KubeAPIService"
+          "$ref": "#/definitions/KubeAPIService",
+          "description": "KubeAPI Service"
         },
         "kubeController": {
-          "$ref": "#/definitions/KubeControllerService"
+          "$ref": "#/definitions/KubeControllerService",
+          "description": "KubeController Service"
         },
         "scheduler": {
-          "$ref": "#/definitions/SchedulerService"
+          "$ref": "#/definitions/SchedulerService",
+          "description": "Scheduler Service"
         },
         "kubelet": {
-          "$ref": "#/definitions/KubeletService"
+          "$ref": "#/definitions/KubeletService",
+          "description": "Kubelet Service"
         },
         "kubeproxy": {
-          "$ref": "#/definitions/KubeproxyService"
+          "$ref": "#/definitions/KubeproxyService",
+          "description": "KubeProxy Service"
         }
       },
       "additionalProperties": false,
@@ -3162,124 +3340,164 @@
     "RKESystemImages": {
       "properties": {
         "etcd": {
-          "type": "string"
+          "type": "string",
+          "description": "etcd image"
         },
         "alpine": {
-          "type": "string"
+          "type": "string",
+          "description": "Alpine image"
         },
         "nginxProxy": {
-          "type": "string"
+          "type": "string",
+          "description": "rke-nginx-proxy image"
         },
         "certDownloader": {
-          "type": "string"
+          "type": "string",
+          "description": "rke-cert-deployer image"
         },
         "kubernetesServicesSidecar": {
-          "type": "string"
+          "type": "string",
+          "description": "rke-service-sidekick image"
         },
         "kubedns": {
-          "type": "string"
+          "type": "string",
+          "description": "KubeDNS image"
         },
         "dnsmasq": {
-          "type": "string"
+          "type": "string",
+          "description": "DNSMasq image"
         },
         "kubednsSidecar": {
-          "type": "string"
+          "type": "string",
+          "description": "KubeDNS side car image"
         },
         "kubednsAutoscaler": {
-          "type": "string"
+          "type": "string",
+          "description": "KubeDNS autoscaler image"
         },
         "coredns": {
-          "type": "string"
+          "type": "string",
+          "description": "CoreDNS image"
         },
         "corednsAutoscaler": {
-          "type": "string"
+          "type": "string",
+          "description": "CoreDNS autoscaler image"
         },
         "nodelocal": {
-          "type": "string"
+          "type": "string",
+          "description": "Nodelocal image"
         },
         "kubernetes": {
-          "type": "string"
+          "type": "string",
+          "description": "Kubernetes image"
         },
         "flannel": {
-          "type": "string"
+          "type": "string",
+          "description": "Flannel image"
         },
         "flannelCni": {
-          "type": "string"
+          "type": "string",
+          "description": "Flannel CNI image"
         },
         "calicoNode": {
-          "type": "string"
+          "type": "string",
+          "description": "Calico Node image"
         },
         "calicoCni": {
-          "type": "string"
+          "type": "string",
+          "description": "Calico CNI image"
         },
         "calicoControllers": {
-          "type": "string"
+          "type": "string",
+          "description": "Calico Controllers image"
         },
         "calicoCtl": {
-          "type": "string"
+          "type": "string",
+          "description": "Calicoctl image"
         },
         "calicoFlexVol": {
-          "type": "string"
+          "type": "string",
+          "description": "CalicoFlexVol image"
         },
         "canalNode": {
-          "type": "string"
+          "type": "string",
+          "description": "Canal Node Image"
         },
         "canalCni": {
-          "type": "string"
+          "type": "string",
+          "description": "Canal CNI image"
         },
         "canalControllers": {
-          "type": "string"
+          "type": "string",
+          "description": "Canal Controllers Image needed for Calico/Canal v3.14.0+"
         },
         "canalFlannel": {
-          "type": "string"
+          "type": "string",
+          "description": "CanalFlannel image"
         },
         "canalFlexVol": {
-          "type": "string"
+          "type": "string",
+          "description": "CanalFlexVol image"
         },
         "weaveNode": {
-          "type": "string"
+          "type": "string",
+          "description": "Weave Node image"
         },
         "weaveCni": {
-          "type": "string"
+          "type": "string",
+          "description": "Weave CNI image"
         },
         "podInfraContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "Pod infra container image"
         },
         "ingress": {
-          "type": "string"
+          "type": "string",
+          "description": "Ingress Controller image"
         },
         "ingressBackend": {
-          "type": "string"
+          "type": "string",
+          "description": "Ingress Controller Backend image"
         },
         "metricsServer": {
-          "type": "string"
+          "type": "string",
+          "description": "Metrics Server image"
         },
         "windowsPodInfraContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "Pod infra container image for Windows"
         },
         "aciCniDeployContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "Cni deployer container image for Cisco ACI"
         },
         "aciHostContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "host container image for Cisco ACI"
         },
         "aciOpflexContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "opflex agent container image for Cisco ACI"
         },
         "aciMcastContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "mcast daemon container image for Cisco ACI"
         },
         "aciOvsContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "OpenvSwitch container image for Cisco ACI"
         },
         "aciControllerContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "Controller container image for Cisco ACI"
         },
         "aciGbpServerContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "GBP Server container image for Cisco ACI"
         },
         "aciOpflexServerContainer": {
-          "type": "string"
+          "type": "string",
+          "description": "Opflex Server container image for Cisco ACI"
         }
       },
       "additionalProperties": false,
@@ -3310,91 +3528,118 @@
           "items": {
             "$ref": "#/definitions/RKEConfigNode"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Kubernetes nodes"
         },
         "services": {
-          "$ref": "#/definitions/RKEConfigServices"
+          "$ref": "#/definitions/RKEConfigServices",
+          "description": "Kubernetes components"
         },
         "network": {
-          "$ref": "#/definitions/NetworkConfig"
+          "$ref": "#/definitions/NetworkConfig",
+          "description": "Network configuration used in the kubernetes cluster (flannel, calico)"
         },
         "authentication": {
-          "$ref": "#/definitions/AuthnConfig"
+          "$ref": "#/definitions/AuthnConfig",
+          "description": "Authentication configuration used in the cluster (default: x509)"
         },
         "addons": {
-          "type": "string"
+          "type": "string",
+          "description": "YAML manifest for user provided addons to be deployed on the cluster"
         },
         "addonsInclude": {
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "type": "array",
+          "description": "List of urls or paths for addons"
         },
         "systemImages": {
-          "$ref": "#/definitions/RKESystemImages"
+          "$ref": "#/definitions/RKESystemImages",
+          "description": "List of images used internally for proxy, cert downlaod and kubedns"
         },
         "sshKeyPath": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Private Key Path"
         },
         "sshCertPath": {
-          "type": "string"
+          "type": "string",
+          "description": "SSH Certificate Path"
         },
         "sshAgentAuth": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "SSH Agent Auth enable"
         },
         "authorization": {
-          "$ref": "#/definitions/AuthzConfig"
+          "$ref": "#/definitions/AuthzConfig",
+          "description": "Authorization mode configuration used in the cluster"
         },
         "ignoreDockerVersion": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Enable/disable strict docker version checking"
         },
         "kubernetesVersion": {
-          "type": "string"
+          "type": "string",
+          "description": "Kubernetes version to use (if kubernetes image is specifed, image version takes precedence)"
         },
         "privateRegistries": {
           "items": {
             "$ref": "#/definitions/PrivateRegistry"
           },
-          "type": "array"
+          "type": "array",
+          "description": "List of private registries and their credentials"
         },
         "ingress": {
-          "$ref": "#/definitions/IngressConfig"
+          "$ref": "#/definitions/IngressConfig",
+          "description": "Ingress controller used in the cluster"
         },
         "clusterName": {
-          "type": "string"
+          "type": "string",
+          "description": "Cluster Name used in the kube config"
         },
         "cloudProvider": {
-          "$ref": "#/definitions/CloudProvider"
+          "$ref": "#/definitions/CloudProvider",
+          "description": "Cloud Provider options"
         },
         "prefixPath": {
-          "type": "string"
+          "type": "string",
+          "description": "kubernetes directory path"
         },
         "winPrefixPath": {
-          "type": "string"
+          "type": "string",
+          "description": "kubernetes directory path for windows"
         },
         "addonJobTimeout": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Timeout in seconds for status check on addon deployment jobs"
         },
         "bastionHost": {
-          "$ref": "#/definitions/BastionHost"
+          "$ref": "#/definitions/BastionHost",
+          "description": "Bastion/Jump Host configuration"
         },
         "monitoring": {
-          "$ref": "#/definitions/MonitoringConfig"
+          "$ref": "#/definitions/MonitoringConfig",
+          "description": "Monitoring Config"
         },
         "restore": {
-          "$ref": "#/definitions/RestoreConfig"
+          "$ref": "#/definitions/RestoreConfig",
+          "description": "RestoreCluster flag"
         },
         "rotateCertificates": {
-          "$ref": "#/definitions/RotateCertificates"
+          "$ref": "#/definitions/RotateCertificates",
+          "description": "Rotating Certificates Option"
         },
         "rotateEncryptionKey": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Rotate Encryption Key Option"
         },
         "dns": {
-          "$ref": "#/definitions/DNSConfig"
+          "$ref": "#/definitions/DNSConfig",
+          "description": "DNS Config"
         },
         "upgradeStrategy": {
-          "$ref": "#/definitions/NodeUpgradeStrategy"
+          "$ref": "#/definitions/NodeUpgradeStrategy",
+          "description": "Upgrade Strategy for the cluster"
         }
       },
       "additionalProperties": false,
@@ -3498,13 +3743,15 @@
     "RotateCertificates": {
       "properties": {
         "caCertificates": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Rotate CA Certificates"
         },
         "services": {
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "type": "array",
+          "description": "Services to rotate their certs"
         }
       },
       "additionalProperties": false,
@@ -3516,7 +3763,8 @@
       ],
       "properties": {
         "router-id": {
-          "type": "string"
+          "type": "string",
+          "description": "required"
         }
       },
       "additionalProperties": false,
@@ -3735,10 +3983,12 @@
     "SecretsEncryptionConfig": {
       "properties": {
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Enable/disable secrets encryption provider config"
         },
         "customConfig": {
-          "$ref": "#/definitions/EncryptionConfiguration"
+          "$ref": "#/definitions/EncryptionConfiguration",
+          "description": "Custom Encryption Provider configuration object"
         }
       },
       "additionalProperties": false,

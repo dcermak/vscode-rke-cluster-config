@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "out",
-    "rootDir": "src"
+    "outDir": "schemas/out",
+    "rootDir": "schemas"
   },
   "exclude": [
     "**/*.js",
@@ -11,6 +11,6 @@
     ".vscode-test",
     "test-resources",
     "flycheck_*",
-    "schemas"
+    "src"
   ]
 }

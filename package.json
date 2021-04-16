@@ -11,21 +11,20 @@
   "main": "./out/extension",
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -p ./",
+    "compile": "tsc -p ./ && tsc -p ./tsconfig.schemas.json",
     "cleandeps": "rm -rf node_modules",
     "package": "vsce package --yarn",
-    "schema": "go run dump_cluster_config_schema.go && jq -c 'walk(if type == \"object\" and has(\"$schema\") then del(.[\"$schema\"]) else . end)'  < ./schemas/cluster.yml.json|jq . > tmp.json && mv tmp.json ./schemas/cluster.yml.json && jq -c 'walk(if type == \"object\" and has(\"$schema\") then del(.[\"$schema\"]) else . end)'  < ./schemas/cluster.json|jq . > tmp.json && mv tmp.json ./schemas/cluster.json",
-    "schemaCheck": "./schemas/validate.js"
+    "schema": "go run dump_cluster_config_schema.go && node ./schemas/out/process-schema.js",
+    "schemaCheck": "node ./schemas/out/validate.js"
   },
-  "repository": "https://github.com/dcermak/vscode-rke-cluster-config",
-  "author": "Dan Čermák <dcermak@suse.com>",
-  "publisher": "dancermak",
-  "preview": true,
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dcermak/vscode-rke-cluster-config"
   },
+  "author": "Dan Čermák <dcermak@suse.com>",
+  "publisher": "dancermak",
+  "preview": true,
+  "license": "MIT",
   "dependencies": {},
   "extensionDependencies": ["redhat.vscode-yaml"],
   "devDependencies": {
