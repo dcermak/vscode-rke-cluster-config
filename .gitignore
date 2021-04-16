@@ -263,3 +263,7 @@ vendor/
 
 cluster-config-dumper
 vscode-rke-cluster-config-*vsix
+
+schemas/docMap.json
+schemas/jsonNames.json
+schemas/yamlNames.json
