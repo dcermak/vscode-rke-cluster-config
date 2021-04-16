@@ -28,6 +28,7 @@ jobs:
           go mod vendor
           yarn install
 
+      - run: yarn run compile
       - run: yarn run schema
       - run: yarn run schemaCheck
       - run: git diff --exit-code -- schemas/*json
