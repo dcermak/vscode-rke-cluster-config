@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Add documentation into the schemas
+- Add tests to the go code
+
 ### Changed
 
 ### Removed
