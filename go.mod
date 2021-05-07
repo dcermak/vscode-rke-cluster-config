@@ -11,6 +11,6 @@ replace (
 require (
 	github.com/alecthomas/jsonschema v0.0.1
 	github.com/fatih/structtag v1.2.0
-	github.com/rancher/rke v1.2.7
+	github.com/rancher/rke v1.2.8
 	k8s.io/apimachinery v0.20.0
 )
