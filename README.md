@@ -17,6 +17,25 @@ extension by adding the schema of the `cluster.yml` files to the extension's
 configuration.
 
 
+## Features
+
+- autocompletion of configuration keys and values:
+
+![autocomplete](media/autocomplete.gif)
+
+- validation of the keys and values:
+
+![linting_error](media/linting_error.png)
+
+- documentation of the configuration options on hover:
+
+![doc_on_hover](media/doc_on_hover.png)
+
+- breadcrumbs (provided by the YAML extension):
+
+![breadcrumbs](media/breadcrumbs.png)
+
+
 ## Development
 
 Requirements:
