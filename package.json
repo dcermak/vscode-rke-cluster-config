@@ -32,7 +32,7 @@
     "@exodus/schemasafe": "^1.0.0-rc.3",
     "@types/node": "^15",
     "typescript": "^4",
-    "vsce": "^1.88",
+    "vsce": "^1.91",
     "vscode": "^1.1",
     "yaml": "^1.10.2"
   }
