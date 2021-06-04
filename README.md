@@ -23,7 +23,7 @@ The extension builds upon the
 [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 plugin for VSCode and adds the following capabilities:
 
-- Configuration keys and values support autocompletion:
+- Autocompletion of Configuration keys and values:
 
 ![autocomplete](media/autocomplete.gif)
 
