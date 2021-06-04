@@ -26,6 +26,11 @@
   "publisher": "dancermak",
   "preview": true,
   "license": "MIT",
+  "icon": "media/icon-rke.png",
+  "galleryBanner": {
+    "color": "#ECF0F1",
+    "theme": "dark"
+  },
   "dependencies": {},
   "extensionDependencies": ["redhat.vscode-yaml"],
   "devDependencies": {
