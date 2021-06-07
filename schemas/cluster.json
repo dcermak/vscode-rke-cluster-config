@@ -4,10 +4,10 @@
   "definitions": {
     "AESConfiguration": {
       "required": [
-        "Keys"
+        "keys"
       ],
       "properties": {
-        "Keys": {
+        "keys": {
           "items": {
             "$ref": "#/definitions/Key"
           },
@@ -1249,7 +1249,7 @@
     },
     "EncryptionConfiguration": {
       "required": [
-        "Resources"
+        "resources"
       ],
       "properties": {
         "kind": {
@@ -1258,7 +1258,7 @@
         "apiVersion": {
           "type": "string"
         },
-        "Resources": {
+        "resources": {
           "items": {
             "$ref": "#/definitions/ResourceConfiguration"
           },
@@ -1290,9 +1290,6 @@
       "properties": {
         "volumeClaimTemplate": {
           "$ref": "#/definitions/PersistentVolumeClaimTemplate"
-        },
-        "readOnly": {
-          "type": "boolean"
         }
       },
       "additionalProperties": false,
@@ -1924,22 +1921,20 @@
     },
     "KMSConfiguration": {
       "required": [
-        "Name",
-        "CacheSize",
-        "Endpoint",
-        "Timeout"
+        "name",
+        "endpoint"
       ],
       "properties": {
-        "Name": {
+        "name": {
           "type": "string"
         },
-        "CacheSize": {
+        "cachesize": {
           "type": "integer"
         },
-        "Endpoint": {
+        "endpoint": {
           "type": "string"
         },
-        "Timeout": {
+        "timeout": {
           "$ref": "#/definitions/Duration"
         }
       },
@@ -1948,14 +1943,14 @@
     },
     "Key": {
       "required": [
-        "Name",
-        "Secret"
+        "name",
+        "secret"
       ],
       "properties": {
-        "Name": {
+        "name": {
           "type": "string"
         },
-        "Secret": {
+        "secret": {
           "type": "string"
         }
       },
@@ -3119,27 +3114,20 @@
       "type": "object"
     },
     "ProviderConfiguration": {
-      "required": [
-        "AESGCM",
-        "AESCBC",
-        "Secretbox",
-        "Identity",
-        "KMS"
-      ],
       "properties": {
-        "AESGCM": {
+        "aesgcm": {
           "$ref": "#/definitions/AESConfiguration"
         },
-        "AESCBC": {
+        "aescbc": {
           "$ref": "#/definitions/AESConfiguration"
         },
-        "Secretbox": {
+        "secretbox": {
           "$ref": "#/definitions/SecretboxConfiguration"
         },
-        "Identity": {
+        "identity": {
           "$ref": "#/definitions/IdentityConfiguration"
         },
-        "KMS": {
+        "kms": {
           "$ref": "#/definitions/KMSConfiguration"
         }
       },
@@ -3647,17 +3635,17 @@
     },
     "ResourceConfiguration": {
       "required": [
-        "Resources",
-        "Providers"
+        "resources",
+        "providers"
       ],
       "properties": {
-        "Resources": {
+        "resources": {
           "items": {
             "type": "string"
           },
           "type": "array"
         },
-        "Providers": {
+        "providers": {
           "items": {
             "$ref": "#/definitions/ProviderConfiguration"
           },
@@ -3722,6 +3710,9 @@
     "RollingUpdateDaemonSet": {
       "properties": {
         "maxUnavailable": {
+          "$ref": "#/definitions/IntOrString"
+        },
+        "maxSurge": {
           "$ref": "#/definitions/IntOrString"
         }
       },
@@ -3967,10 +3958,10 @@
     },
     "SecretboxConfiguration": {
       "required": [
-        "Keys"
+        "keys"
       ],
       "properties": {
-        "Keys": {
+        "keys": {
           "items": {
             "$ref": "#/definitions/Key"
           },
