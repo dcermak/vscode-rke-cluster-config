@@ -378,6 +378,11 @@ https-proxy-agent@^5.0.0:
     agent-base "6"
     debug "4"
 
+ignore@^5.1.8:
+  version "5.1.8"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
+  integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -429,7 +434,7 @@ mime@^1.3.4:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
-minimatch@3.0.4, minimatch@^3.0.3, minimatch@^3.0.4:
+minimatch@3.0.4, minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   integrity sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==
@@ -657,10 +662,10 @@ url-join@^1.1.0:
   resolved "https://registry.yarnpkg.com/url-join/-/url-join-1.1.0.tgz#741c6c2f4596c4830d6718460920d0c92202dc78"
   integrity sha1-dBxsL0WWxIMNZxhGCSDQySIC3Hg=
 
-vsce@^1.91:
-  version "1.91.0"
-  resolved "https://registry.yarnpkg.com/vsce/-/vsce-1.91.0.tgz#e58cdfa364fa553cd8b623779323f501f6aec0ec"
-  integrity sha512-y75QryWKzAw5KIR4NFEXc6XAy/Er1BHXdNwAESgKKFw8Yc8cA/+dP4Gj7VYhNPOJlV0v5j1in/cPkLFZAqC7cQ==
+vsce@^1.92:
+  version "1.92.0"
+  resolved "https://registry.yarnpkg.com/vsce/-/vsce-1.92.0.tgz#fb7974dc275287ea521e1c0f5e76242e763e51e6"
+  integrity sha512-gL6FBn2cOf4kotUV7VeiXWoY7eaZAz6NTvqG66a1rK/VDE8ChrHaS21zs9G9t1spzoBi7vxfE0ZKYqyusQGQ7g==
   dependencies:
     azure-devops-node-api "^10.2.2"
     chalk "^2.4.2"
@@ -668,11 +673,11 @@ vsce@^1.91:
     commander "^6.1.0"
     denodeify "^1.2.1"
     glob "^7.0.6"
+    ignore "^5.1.8"
     leven "^3.1.0"
     lodash "^4.17.15"
     markdown-it "^10.0.0"
     mime "^1.3.4"
-    minimatch "^3.0.3"
     osenv "^0.1.3"
     parse-semver "^1.1.1"
     read "^1.0.7"
