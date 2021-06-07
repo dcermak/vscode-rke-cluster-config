@@ -11,6 +11,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+### Removed
+
+
+## [0.0.3] - 2021-06-07
+
+### Added
+
+### Changed
+
 - Improve Marketplace presentation
 - Update schema to latest release
 
