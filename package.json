@@ -6,7 +6,7 @@
   "categories": ["Other", "Linters"],
   "activationEvents": ["onLanguage:yaml"],
   "keywords": ["rancher", "rke", "configuration", "kubernetes", "yaml", "k8s"],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "VSCode extension for RKE cluster configuration",
   "main": "./out/extension",
   "scripts": {
@@ -29,7 +29,7 @@
   "icon": "media/icon-rke.png",
   "galleryBanner": {
     "color": "#ECF0F1",
-    "theme": "dark"
+    "theme": "light"
   },
   "dependencies": {},
   "extensionDependencies": ["redhat.vscode-yaml"],

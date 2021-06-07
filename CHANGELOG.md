@@ -14,6 +14,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Removed
 
 
+## [0.0.4] - 2021-06-07
+
+### Added
+
+### Changed
+
+- Switch to light theme for the VSCode marketplace
+
+### Removed
+
+
 ## [0.0.3] - 2021-06-07
 
 ### Added
