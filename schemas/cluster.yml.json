@@ -1356,15 +1356,11 @@
     },
     "EphemeralVolumeSource": {
       "required": [
-        "VolumeClaimTemplate",
-        "ReadOnly"
+        "VolumeClaimTemplate"
       ],
       "properties": {
         "VolumeClaimTemplate": {
           "$ref": "#/definitions/PersistentVolumeClaimTemplate"
-        },
-        "ReadOnly": {
-          "type": "boolean"
         }
       },
       "additionalProperties": false,
@@ -4126,10 +4122,14 @@
     },
     "RollingUpdateDaemonSet": {
       "required": [
-        "MaxUnavailable"
+        "MaxUnavailable",
+        "MaxSurge"
       ],
       "properties": {
         "MaxUnavailable": {
+          "$ref": "#/definitions/IntOrString"
+        },
+        "MaxSurge": {
           "$ref": "#/definitions/IntOrString"
         }
       },
@@ -4419,6 +4419,9 @@
       "type": "object"
     },
     "SecretsEncryptionConfig": {
+      "required": [
+        "custom_config"
+      ],
       "properties": {
         "enabled": {
           "type": "boolean",
