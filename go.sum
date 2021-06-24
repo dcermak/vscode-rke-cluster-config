@@ -126,6 +126,8 @@ github.com/dcermak/rke v1.3.0-rc1.0.20210413153447-1dd78c94608a h1:FeQpQsrpXLar0
 github.com/dcermak/rke v1.3.0-rc1.0.20210413153447-1dd78c94608a/go.mod h1:osU/R8vPjgV3AwNnPamC0eOZ6aI0UfpHTyZ5K/b/vZE=
 github.com/dcermak/rke v1.3.0-rc1.0.20210607085837-a89f836f7e4e h1:GKE8yMsJXHwRHrpttY20zlDAtRZNSz0bQzFn00C6Wto=
 github.com/dcermak/rke v1.3.0-rc1.0.20210607085837-a89f836f7e4e/go.mod h1:8teMbZiv6i0IwNzsIjmaqbLIDEBZmvFv1j+1P7uUgyY=
+github.com/dcermak/rke v1.3.0-rc1.0.20210624071739-349053dc99d1 h1:mq9v5O3Vli5lScWJz/FKpEn1pGzpW5XAj4h91DPvTq0=
+github.com/dcermak/rke v1.3.0-rc1.0.20210624071739-349053dc99d1/go.mod h1:8teMbZiv6i0IwNzsIjmaqbLIDEBZmvFv1j+1P7uUgyY=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
 github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=
 github.com/docker/distribution v2.7.1+incompatible/go.mod h1:J2gT2udsDAN96Uj4KfcMRqY0/ypR+oyYUYmja8H+y+w=
