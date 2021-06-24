@@ -700,6 +700,10 @@
         "sshCertPath": {
           "type": "string",
           "description": "SSH Certificate Path"
+        },
+        "ignoreProxyEnvVars": {
+          "type": "boolean",
+          "description": "Ignore proxy environment variables"
         }
       },
       "additionalProperties": false,
@@ -3544,7 +3548,7 @@
         },
         "systemImages": {
           "$ref": "#/definitions/RKESystemImages",
-          "description": "List of images used internally for proxy, cert downlaod and kubedns"
+          "description": "List of images used internally for proxy, cert download and kubedns"
         },
         "sshKeyPath": {
           "type": "string",
@@ -3566,9 +3570,13 @@
           "type": "boolean",
           "description": "Enable/disable strict docker version checking"
         },
+        "enableCRIDockerd": {
+          "type": "boolean",
+          "description": "Enable/disable using cri-dockerd"
+        },
         "kubernetesVersion": {
           "type": "string",
-          "description": "Kubernetes version to use (if kubernetes image is specifed, image version takes precedence)"
+          "description": "Kubernetes version to use (if kubernetes image is specified, image version takes precedence)"
         },
         "privateRegistries": {
           "items": {
