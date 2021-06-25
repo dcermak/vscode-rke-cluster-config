@@ -1,6 +1,7 @@
 # VSCode extension for RKE Cluster Configuration files
 
 [![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/dancermak.vscode-rke-cluster-config)](https://marketplace.visualstudio.com/items?itemName=dancermak.vscode-rke-cluster-config)
+[![Open VSX Marketplace](https://img.shields.io/open-vsx/v/dancermak/vscode-rke-cluster-config)](https://open-vsx.org/extension/dancermak/vscode-rke-cluster-config)
 [![extension build](https://img.shields.io/github/workflow/status/dcermak/vscode-rke-cluster-config/extension?label=extension%20build)](https://github.com/dcermak/vscode-rke-cluster-config/actions/workflows/extension.yml)
 [![schema check](https://img.shields.io/github/workflow/status/dcermak/vscode-rke-cluster-config/schema?label=schema%20check)](https://github.com/dcermak/vscode-rke-cluster-config/actions/workflows/schema.yml)
 [![go tests](https://img.shields.io/github/workflow/status/dcermak/vscode-rke-cluster-config/go?label=go%20test)](https://github.com/dcermak/vscode-rke-cluster-config/actions/workflows/go.yml)
