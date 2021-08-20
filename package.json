@@ -34,7 +34,7 @@
   "dependencies": {},
   "extensionDependencies": ["redhat.vscode-yaml"],
   "devDependencies": {
-    "@exodus/schemasafe": "^1.0.0-rc.3",
+    "@exodus/schemasafe": "^1.0.0-rc.4",
     "@types/node": "^16",
     "@types/vscode": "^1.50.0",
     "ovsx": ">=0.2.0",
