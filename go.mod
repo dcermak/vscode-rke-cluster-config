@@ -4,7 +4,7 @@ go 1.15
 
 replace (
 	github.com/alecthomas/jsonschema => github.com/alecthomas/jsonschema v0.0.0-20210526225647-edb03dcab7bc
-	github.com/rancher/rke => github.com/dcermak/rke v1.3.0-rc1.0.20210624071739-349053dc99d1
+	github.com/rancher/rke => github.com/dcermak/rke v1.3.0-rc1.0.20210824145743-7c3e5260153a
 	k8s.io/client-go => k8s.io/client-go v0.21.0
 )
 
