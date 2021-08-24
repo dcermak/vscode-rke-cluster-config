@@ -1129,6 +1129,21 @@
       "additionalProperties": false,
       "type": "object"
     },
+    "ECRCredentialPlugin": {
+      "properties": {
+        "awsAccessKeyId": {
+          "type": "string"
+        },
+        "awsSecretAccessKey": {
+          "type": "string"
+        },
+        "awsAccessToken": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
     "ETCDService": {
       "properties": {
         "image": {
@@ -3094,6 +3109,10 @@
         "isDefault": {
           "type": "boolean",
           "description": "Default registry"
+        },
+        "ecrCredentialPlugin": {
+          "$ref": "#/definitions/ECRCredentialPlugin",
+          "description": "ECRCredentialPlugin"
         }
       },
       "additionalProperties": false,
@@ -3451,6 +3470,10 @@
           "type": "string",
           "description": "Ingress Controller Backend image"
         },
+        "ingressWebhook": {
+          "type": "string",
+          "description": "Ingress Webhook image"
+        },
         "metricsServer": {
           "type": "string",
           "description": "Metrics Server image"
@@ -3570,7 +3593,7 @@
           "type": "boolean",
           "description": "Enable/disable strict docker version checking"
         },
-        "enableCRIDockerd": {
+        "enableCriDockerd": {
           "type": "boolean",
           "description": "Enable/disable using cri-dockerd"
         },

@@ -1185,6 +1185,26 @@
       "additionalProperties": false,
       "type": "object"
     },
+    "ECRCredentialPlugin": {
+      "required": [
+        "aws_access_key_id",
+        "aws_secret_access_key",
+        "aws_session_token"
+      ],
+      "properties": {
+        "aws_access_key_id": {
+          "type": "string"
+        },
+        "aws_secret_access_key": {
+          "type": "string"
+        },
+        "aws_session_token": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
     "ETCDService": {
       "properties": {
         "image": {
@@ -3483,6 +3503,10 @@
         "is_default": {
           "type": "boolean",
           "description": "Default registry"
+        },
+        "ecr_credential_plugin": {
+          "$ref": "#/definitions/ECRCredentialPlugin",
+          "description": "ECRCredentialPlugin"
         }
       },
       "additionalProperties": false,
@@ -3857,6 +3881,10 @@
         "ingress_backend": {
           "type": "string",
           "description": "Ingress Controller Backend image"
+        },
+        "ingress_webhook": {
+          "type": "string",
+          "description": "Ingress Webhook image"
         },
         "metrics_server": {
           "type": "string",
