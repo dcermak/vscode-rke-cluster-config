@@ -14,6 +14,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Removed
 
 
+## [0.0.6] - 2021-08-25
+
+### Added
+
+### Changed
+
+- Update the yaml and json schema to the latest RKE state
+
+### Removed
+
+
 ## [0.0.5] - 2021-06-25
 
 ### Added

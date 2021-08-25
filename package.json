@@ -6,7 +6,7 @@
   "categories": ["Other", "Linters"],
   "activationEvents": ["onLanguage:yaml"],
   "keywords": ["rancher", "rke", "configuration", "kubernetes", "yaml", "k8s"],
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "VSCode extension for RKE cluster configuration",
   "main": "./out/extension",
   "scripts": {
