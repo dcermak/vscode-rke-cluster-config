@@ -3,9 +3,21 @@
   "engines": {
     "vscode": "^1.50.0"
   },
-  "categories": ["Other", "Linters"],
-  "activationEvents": ["onLanguage:yaml"],
-  "keywords": ["rancher", "rke", "configuration", "kubernetes", "yaml", "k8s"],
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:yaml"
+  ],
+  "keywords": [
+    "rancher",
+    "rke",
+    "configuration",
+    "kubernetes",
+    "yaml",
+    "k8s"
+  ],
   "version": "0.0.6",
   "description": "VSCode extension for RKE cluster configuration",
   "main": "./out/extension",
@@ -32,7 +44,9 @@
     "theme": "light"
   },
   "dependencies": {},
-  "extensionDependencies": ["redhat.vscode-yaml"],
+  "extensionDependencies": [
+    "redhat.vscode-yaml"
+  ],
   "devDependencies": {
     "@exodus/schemasafe": "^1.0.0-rc.4",
     "@types/node": "^16",
