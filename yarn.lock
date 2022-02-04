@@ -12,10 +12,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.10.3.tgz#7a8f2838603ea314d1d22bb3171d899e15c57bd5"
   integrity sha512-ho3Ruq+fFnBrZhUYI46n/bV2GjwzSkwuT4dTf0GkuNFmnb8nq4ny2z9JEVemFi6bdEJanHLlYfy9c6FN9B9McQ==
 
-"@types/vscode@^1.50.0":
-  version "1.61.0"
-  resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.61.0.tgz#c54335b6f84c19c69b1435b17cc0ce3b2cecfeec"
-  integrity sha512-9k5Nwq45hkRwdfCFY+eKXeQQSbPoA114mF7U/4uJXRBJeGIO7MuJdhF1PnaDN+lllL9iKGQtd6FFXShBXMNaFg==
+"@types/vscode@^1.64.0":
+  version "1.64.0"
+  resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.64.0.tgz#bfd82c8d92dc7824c1be084be1ab46ce20d7fb55"
+  integrity sha512-bSlAWz5WtcSL3cO9tAT/KpEH9rv5OBnm93OIIFwdCshaAiqr2bp1AUyEwW9MWeCvZBHEXc3V0fTYVdVyzDNwHA==
 
 ansi-styles@^3.2.1:
   version "3.2.1"
