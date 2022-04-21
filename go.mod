@@ -12,5 +12,5 @@ require (
 	github.com/alecthomas/jsonschema v0.0.1
 	github.com/fatih/structtag v1.2.0
 	github.com/rancher/rke v1.2.9
-	k8s.io/apimachinery v0.21.0
+	k8s.io/apimachinery v0.23.6
 )
