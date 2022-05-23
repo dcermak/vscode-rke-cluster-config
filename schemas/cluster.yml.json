@@ -4456,7 +4456,7 @@
     },
     "SecretsEncryptionConfig": {
       "required": [
-        "custom_config"
+        "enabled"
       ],
       "properties": {
         "enabled": {
