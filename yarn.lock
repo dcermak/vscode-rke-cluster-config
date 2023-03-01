@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@exodus/schemasafe@^1.0.0-rc.4":
-  version "1.0.0-rc.6"
-  resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.0.0-rc.6.tgz#7985f681564cff4ffaebb5896eb4be20af3aae7a"
-  integrity sha512-dDnQizD94EdBwEj/fh3zPRa/HWCS9O5au2PuHhZBbuM3xWHxuaKzPBOEWze7Nn0xW68MIpZ7Xdyn1CoCpjKCuQ==
+"@exodus/schemasafe@^1.0.0-rc.10":
+  version "1.0.0-rc.10"
+  resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.0.0-rc.10.tgz#1c7728cdeab6b6a76e3bcadff677ffa4a57a1620"
+  integrity sha512-ZKjOj0oXi7h55tud+MopVNgyw+Y2EqhZHmLK594G2Gc8K/xXJKM+hVtPwXCMoahLx03km+Nms/HYwqjejxJurQ==
 
 "@types/node@^16":
   version "16.10.3"
